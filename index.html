@@ -112,13 +112,9 @@
 </style>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-<style id="nav-init-style">
-  .main-panel { display: none !important; }
-  .sub-panel { display: none !important; }
-  .sub-tabs-wrap { display: none !important; }
-</style>
 <script>
 (function(){
+  // Run BEFORE any rendering - set correct nav state instantly
   var hash = window.location.hash.replace('#','');
   var mains = ['home','tarsalgasi','szituaciok','temakorok'];
   var cat = '', subId = '';
@@ -130,37 +126,16 @@
       cat = hash;
     }
   }
-  if (!cat) cat = 'home';
-  document.addEventListener('DOMContentLoaded', function(){
-    // Remove the blocking style
-    var s = document.getElementById('nav-init-style');
-    if (s) s.remove();
-    // Activate correct panels
-    var panel = document.getElementById('panel-' + cat);
-    if (panel) panel.classList.add('active');
-    var ids = ['home','tarsalgasi','szituaciok','temakorok'];
-    document.querySelectorAll('.main-tab').forEach(function(b,i){
-      b.classList.toggle('active', ids[i] === cat);
-    });
-    if (cat !== 'home') {
-      var subWrap = document.getElementById('sub-' + cat);
-      if (subWrap) subWrap.classList.add('active');
-      if (subId) {
-        var subPanel = document.getElementById('sub-' + subId);
-        if (subPanel) subPanel.classList.add('active');
-        if (subWrap) subWrap.querySelectorAll('.sub-tab').forEach(function(b){
-          var oc = b.getAttribute('onclick') || '';
-          b.classList.toggle('active', oc.indexOf("'" + subId + "'") !== -1);
-        });
-      } else {
-        // activate first sub-panel
-        var firstSub = document.querySelector('#panel-' + cat + ' .sub-panel');
-        if (firstSub) firstSub.classList.add('active');
-      }
-    }
-  });
+  window._navCat = cat || 'home';
+  window._navSub = subId || '';
 })();
 </script>
+<style>
+  /* Hide all panels by default, JS will show the correct one */
+  .main-panel { display: none !important; }
+  .sub-panel { display: none !important; }
+  .sub-tabs-wrap { display: none !important; }
+</style>
 </head>
 <body>
 <header>
@@ -1203,7 +1178,12 @@ function showMain(id, noHash) {
   document.querySelectorAll('.sub-tabs-wrap').forEach(function(w){ w.classList.remove('active'); });
   var sub = document.getElementById('sub-' + id);
   if (sub) sub.classList.add('active');
-  if (!noHash) history.replaceState(null, '', '#' + id);
+  if (!noHash) {
+    try {
+      if (id === 'home') history.replaceState(null, '', window.location.pathname);
+      else history.replaceState(null, '', '#' + id);
+    } catch(e) {}
+  }
   window.scrollTo({top:0, behavior:'smooth'});
 }
 function showSub(cat, subId, noHash) {
@@ -1214,7 +1194,7 @@ function showSub(cat, subId, noHash) {
     var oc = b.getAttribute('onclick') || '';
     b.classList.toggle('active', oc.indexOf("'" + subId + "'") !== -1);
   });
-  if (!noHash) history.replaceState(null, '', '#' + cat + '-' + subId);
+  if (!noHash) { try { history.replaceState(null, '', '#' + cat + '-' + subId); } catch(e) {} }
   window.scrollTo({top:80, behavior:'smooth'});
 }
 function speak(text) {
@@ -1934,6 +1914,37 @@ function restoreNav() {
     showMain(hash, true);
   }
 }
+
+document.addEventListener('DOMContentLoaded', function(){
+  // Instantly show correct panel before anything else
+  var cat = window._navCat || 'home';
+  var subId = window._navSub || '';
+  var ids = ['home','tarsalgasi','szituaciok','temakorok'];
+
+  document.querySelectorAll('.main-panel').forEach(function(p){ p.classList.remove('active'); });
+  var panel = document.getElementById('panel-' + cat);
+  if (panel) panel.classList.add('active');
+
+  document.querySelectorAll('.main-tab').forEach(function(b,i){
+    b.classList.toggle('active', ids[i] === cat);
+  });
+
+  if (cat !== 'home') {
+    var subWrap = document.getElementById('sub-' + cat);
+    if (subWrap) subWrap.classList.add('active');
+    if (subId) {
+      var subPanel = document.getElementById('sub-' + subId);
+      if (subPanel) subPanel.classList.add('active');
+      if (subWrap) subWrap.querySelectorAll('.sub-tab').forEach(function(b){
+        var oc = b.getAttribute('onclick') || '';
+        b.classList.toggle('active', oc.indexOf("'" + subId + "'") !== -1);
+      });
+    } else {
+      var firstSub = document.querySelector('#panel-' + cat + ' .sub-panel');
+      if (firstSub) firstSub.classList.add('active');
+    }
+  }
+});
 
 window.addEventListener('load', function(){
   initFirebase();
