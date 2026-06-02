@@ -130,24 +130,24 @@
     <button class="sub-tab empty">2. Fremdsprache lernen</button>
     <button class="sub-tab done" onclick="showSub('tarsalgasi','t3')">3. Mein bester Freund</button>
     <button class="sub-tab done" onclick="showSub('tarsalgasi','t4')">4. Urlaub</button>
-    <button class="sub-tab empty">5. Sport</button>
+    <button class="sub-tab done" onclick="showSub('tarsalgasi','t5')">5. Sport</button>
     <button class="sub-tab empty">6. Wetter und Jahreszeiten</button>
     <button class="sub-tab done" onclick="showSub('tarsalgasi','t7')">7. Geld in unserem Leben</button>
     <button class="sub-tab empty">8. Hobbytier</button>
     <button class="sub-tab empty">9. Gesunde Lebensweise</button>
-    <button class="sub-tab empty">10. Großstadt / Lande</button>
+    <button class="sub-tab done" onclick="showSub('tarsalgasi','t10')">10. Großstadt / Lande</button>
   </div>
 </div>
 <div class="sub-tabs-wrap" id="sub-szituaciok">
   <div class="sub-tabs">
     <button class="sub-tab done active" onclick="showSub('szituaciok','s1')">1. Einen Tisch reservieren</button>
     <button class="sub-tab empty">2. Pizza bestellen</button>
-    <button class="sub-tab empty">3. Beim Arzt</button>
-    <button class="sub-tab empty">4. Orientierung Balatonfüzfő</button>
-    <button class="sub-tab empty">5. Kranke Freundin</button>
-    <button class="sub-tab empty">6. Handy kaputt</button>
+    <button class="sub-tab done" onclick="showSub('szituaciok','s3')">3. Beim Arzt</button>
+    <button class="sub-tab done" onclick="showSub('szituaciok','s4')">4. Orientierung Balatonfüzfő</button>
+    <button class="sub-tab done" onclick="showSub('szituaciok','s5')">5. Kranke Freundin</button>
+    <button class="sub-tab done" onclick="showSub('szituaciok','s6')">6. Handy kaputt</button>
     <button class="sub-tab empty">7. Einladung ins Kino</button>
-    <button class="sub-tab empty">8. Neue Mitschülerin</button>
+    <button class="sub-tab done" onclick="showSub('szituaciok','s8')">8. Neue Mitschülerin</button>
     <button class="sub-tab empty">9. Fahrkartenkauf</button>
     <button class="sub-tab empty">10. Im Restaurant</button>
   </div>
@@ -156,8 +156,8 @@
   <div class="sub-tabs">
     <button class="sub-tab empty">1. Schüler und Mode</button>
     <button class="sub-tab empty">2. Essgewohnheiten</button>
-    <button class="sub-tab empty">3. Tagesablauf</button>
-    <button class="sub-tab empty">4. Freizeit</button>
+    <button class="sub-tab done" onclick="showSub('temakorok','tk3')">3. Tagesablauf</button>
+    <button class="sub-tab done" onclick="showSub('temakorok','tk4')">4. Freizeit</button>
     <button class="sub-tab empty">5. Familienfeste</button>
     <button class="sub-tab empty">6. Ich und meine Familie</button>
     <button class="sub-tab done active" onclick="showSub('temakorok','tk7')">7. Unser Haus</button>
@@ -172,9 +172,9 @@
   <div class="section-title">Üdvözöllek! 👋</div>
   <p class="section-sub">Válassz kategóriát — minden belül 10 altételt találsz. Zöld = kész, szürke = hamarosan.</p>
   <div class="cat-grid">
-    <div class="cat-card" onclick="showMain('tarsalgasi')"><div class="cat-emoji">💬</div><div class="cat-name">Társalgási témák</div><div class="cat-sub">Zukunftspläne, Urlaub, Geld és még 7 téma</div><div class="cat-count">✅ 4 / 10 kész</div></div>
-    <div class="cat-card" onclick="showMain('szituaciok')"><div class="cat-emoji">🎭</div><div class="cat-name">Érettségi szituációk</div><div class="cat-sub">Dialógok szerepjátékra — étterem, orvos, mozijegy...</div><div class="cat-count">✅ 1 / 10 kész</div></div>
-    <div class="cat-card" onclick="showMain('temakorok')"><div class="cat-emoji">📚</div><div class="cat-name">Témakörök</div><div class="cat-sub">Unser Haus, Hausarbeit és még 8 téma</div><div class="cat-count">✅ 2 / 10 kész</div></div>
+    <div class="cat-card" onclick="showMain('tarsalgasi')"><div class="cat-emoji">💬</div><div class="cat-name">Társalgási témák</div><div class="cat-sub">Zukunftspläne, Urlaub, Geld és még 7 téma</div><div class="cat-count">✅ 6 / 10 kész</div></div>
+    <div class="cat-card" onclick="showMain('szituaciok')"><div class="cat-emoji">🎭</div><div class="cat-name">Érettségi szituációk</div><div class="cat-sub">Dialógok szerepjátékra — étterem, orvos, mozijegy...</div><div class="cat-count">✅ 6 / 10 kész</div></div>
+    <div class="cat-card" onclick="showMain('temakorok')"><div class="cat-emoji">📚</div><div class="cat-name">Témakörök</div><div class="cat-sub">Unser Haus, Hausarbeit és még 8 téma</div><div class="cat-count">✅ 4 / 10 kész</div></div>
   </div>
   <div class="info-box">
     <div class="info-title">💡 Hogyan használd?</div>
@@ -191,7 +191,7 @@
     <div class="section-title">🔭 1. Zukunftspläne</div>
     <p class="section-sub">Jövőtervek — kérdés-válasz párhuzamos szöveg.</p>
     <div class="card">
-      <div class="card-title"><span class="icon" style="background:#f0e8ff;">📖</span> Szöveg — Meine Zukunftspläne <button class="read-btn" onclick="speakAll('z-de')" style="margin-left:auto;">🔊 Egész szöveg</button><button onclick="openEditor('z', 'Zukunftspläne')" style="padding:5px 12px;border-radius:50px;border:1.5px solid #c47c2b;background:none;color:#c47c2b;font-size:0.78rem;font-weight:600;cursor:pointer;margin-left:6px;">✏️ Szerkesztés</button></div>
+      <div class="card-title"><span class="icon" style="background:#f0e8ff;">📖</span> Szöveg — Meine Zukunftspläne <button class="read-btn" onclick="speakAll('z-de')" style="margin-left:auto;">🔊 Egész szöveg</button></div>
       <div class="parallel">
         <div class="par-de" id="z-de">
           <div class="par-label">🇩🇪 Deutsch</div>
@@ -261,7 +261,7 @@
     <div class="section-title">👥 3. Mein bester Freund</div>
     <p class="section-sub">Barátság, közös programok — kérdés-válasz párhuzamos szöveg.</p>
     <div class="card">
-      <div class="card-title"><span class="icon" style="background:#e8f7ec;">📖</span> Szöveg — Konversation <button class="read-btn" onclick="speakAll('f-de')" style="margin-left:auto;">🔊 Egész szöveg</button><button onclick="openEditor('f', 'Mein bester Freund')" style="padding:5px 12px;border-radius:50px;border:1.5px solid #c47c2b;background:none;color:#c47c2b;font-size:0.78rem;font-weight:600;cursor:pointer;margin-left:6px;">✏️ Szerkesztés</button></div>
+      <div class="card-title"><span class="icon" style="background:#e8f7ec;">📖</span> Szöveg — Konversation <button class="read-btn" onclick="speakAll('f-de')" style="margin-left:auto;">🔊 Egész szöveg</button></div>
       <div class="parallel">
         <div class="par-de" id="f-de">
           <div class="par-label">🇩🇪 Deutsch</div>
@@ -339,7 +339,7 @@
     <div class="section-title">✈️ 4. Urlaub</div>
     <p class="section-sub">Nyaralás, utazás, Budapest nevezetességei.</p>
     <div class="card">
-      <div class="card-title"><span class="icon" style="background:#e8f0ff;">📖</span> Szöveg — Urlaub-Konversation <button class="read-btn" onclick="speakAll('u-de')" style="margin-left:auto;">🔊 Egész szöveg</button><button onclick="openEditor('u', 'Urlaub')" style="padding:5px 12px;border-radius:50px;border:1.5px solid #c47c2b;background:none;color:#c47c2b;font-size:0.78rem;font-weight:600;cursor:pointer;margin-left:6px;">✏️ Szerkesztés</button></div>
+      <div class="card-title"><span class="icon" style="background:#e8f0ff;">📖</span> Szöveg — Urlaub-Konversation <button class="read-btn" onclick="speakAll('u-de')" style="margin-left:auto;">🔊 Egész szöveg</button></div>
       <div class="parallel">
         <div class="par-de" id="u-de">
           <div class="par-label">🇩🇪 Deutsch</div>
@@ -411,7 +411,7 @@
     <div class="section-title">💰 7. Geld in unserem Leben</div>
     <p class="section-sub">Zsebpénz, munkavállalás, banki ügyintézés.</p>
     <div class="card">
-      <div class="card-title"><span class="icon" style="background:#e8f7ec;">📖</span> Szöveg — Geld-Konversation <button class="read-btn" onclick="speakAll('g-de')" style="margin-left:auto;">🔊 Egész szöveg</button><button onclick="openEditor('g', 'Geld')" style="padding:5px 12px;border-radius:50px;border:1.5px solid #c47c2b;background:none;color:#c47c2b;font-size:0.78rem;font-weight:600;cursor:pointer;margin-left:6px;">✏️ Szerkesztés</button></div>
+      <div class="card-title"><span class="icon" style="background:#e8f7ec;">📖</span> Szöveg — Geld-Konversation <button class="read-btn" onclick="speakAll('g-de')" style="margin-left:auto;">🔊 Egész szöveg</button></div>
       <div class="parallel">
         <div class="par-de" id="g-de">
           <div class="par-label">🇩🇪 Deutsch</div>
@@ -477,6 +477,189 @@
       </div>
     </div>
   </div>
+
+  <!-- T10 Großstadt / Lande -->
+  <div class="sub-panel" id="sub-t10">
+    <div class="section-title">🏙️ 10. Großstadt / auf dem Lande</div>
+    <p class="section-sub">Városi és vidéki élet előnyei és hátrányai.</p>
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:#e8f0ff;">📖</span> Das Leben in der Großstadt <button class="read-btn" onclick="speakAll('gs-de')" style="margin-left:auto;">🔊 Egész szöveg</button></div>
+      <div class="parallel">
+        <div class="par-de" id="gs-de">
+          <div class="par-label">🇩🇪 Deutsch</div>
+          <div class="sent"><span class="sent-num">1</span><button class="speak-btn" onclick="speak('Vorteile des Lebens in der Großstadt:')">🔊</button><strong>Vorteile des Lebens in der Großstadt:</strong></div>
+          <div class="sent"><span class="sent-num">2</span><button class="speak-btn" onclick="speak('Es gibt viele Einkaufsmöglichkeiten.')">🔊</button>Es gibt viele Einkaufsmöglichkeiten.</div>
+          <div class="sent"><span class="sent-num">3</span><button class="speak-btn" onclick="speak('Die Verkehrsmöglichkeiten sind gut.')">🔊</button>Die Verkehrsmöglichkeiten sind gut.</div>
+          <div class="sent"><span class="sent-num">4</span><button class="speak-btn" onclick="speak('Es gibt viele Schulen und Unterhaltungsmöglichkeiten.')">🔊</button>Es gibt viele Schulen und Unterhaltungsmöglichkeiten.</div>
+          <div class="sent"><span class="sent-num">5</span><button class="speak-btn" onclick="speak('Man kann ins Kino, ins Theater, ins Konzert oder in die Bar gehen.')">🔊</button>Man kann ins Kino, ins Theater, ins Konzert oder in die Bar gehen.</div>
+          <div class="sent"><span class="sent-num">6</span><button class="speak-btn" onclick="speak('Die Infrastruktur ist gut ausgebaut.')">🔊</button>Die Infrastruktur ist gut ausgebaut.</div>
+          <div class="sent"><span class="sent-num">7</span><button class="speak-btn" onclick="speak('Es gibt viele Arbeitsplätze und Restaurants.')">🔊</button>Es gibt viele Arbeitsplätze und Restaurants.</div>
+          <div class="sent"><span class="sent-num">8</span><button class="speak-btn" onclick="speak('Das Leben ist nie langweilig.')">🔊</button>Das Leben ist nie langweilig.</div>
+          <div class="sent"><span class="sent-num">9</span><button class="speak-btn" onclick="speak('Es gibt ein Nachtleben und man kann einfacher neue Menschen kennenlernen.')">🔊</button>Es gibt ein Nachtleben und man kann einfacher neue Menschen kennenlernen.</div>
+          <div class="sent"><span class="sent-num">10</span><button class="speak-btn" onclick="speak('Nachteile des Lebens in der Großstadt:')">🔊</button><strong>Nachteile des Lebens in der Großstadt:</strong></div>
+          <div class="sent"><span class="sent-num">11</span><button class="speak-btn" onclick="speak('Es gibt viele Obdachlose.')">🔊</button>Es gibt viele Obdachlose.</div>
+          <div class="sent"><span class="sent-num">12</span><button class="speak-btn" onclick="speak('Die Grundstücke und Häuser sind sehr teuer.')">🔊</button>Die Grundstücke und Häuser sind sehr teuer.</div>
+          <div class="sent"><span class="sent-num">13</span><button class="speak-btn" onclick="speak('Es gibt überall zu viele Menschen und zu viel Verkehr und Stau.')">🔊</button>Es gibt überall zu viele Menschen und zu viel Verkehr und Stau.</div>
+          <div class="sent"><span class="sent-num">14</span><button class="speak-btn" onclick="speak('Das Leben ist stressig und man lebt anonym.')">🔊</button>Das Leben ist stressig und man lebt anonym.</div>
+          <div class="sent"><span class="sent-num">15</span><button class="speak-btn" onclick="speak('Die Luft ist schmutzig und die Kriminalität ist hoch.')">🔊</button>Die Luft ist schmutzig und die Kriminalität ist hoch.</div>
+        </div>
+        <div class="par-hu">
+          <div class="par-label">🇭🇺 Magyar fordítás</div>
+          <div class="sent"><span class="sent-num">1</span><strong>A nagyvárosi élet előnyei:</strong></div>
+          <div class="sent"><span class="sent-num">2</span>Sok bevásárlási lehetőség van.</div>
+          <div class="sent"><span class="sent-num">3</span>Jók a közlekedési lehetőségek.</div>
+          <div class="sent"><span class="sent-num">4</span>Sok iskola és szórakozási lehetőség van.</div>
+          <div class="sent"><span class="sent-num">5</span>Lehet moziba, színházba, koncertre vagy bárba menni.</div>
+          <div class="sent"><span class="sent-num">6</span>Az infrastruktúra jól kiépített.</div>
+          <div class="sent"><span class="sent-num">7</span>Sok a munkalehetőség és étterem.</div>
+          <div class="sent"><span class="sent-num">8</span>Az élet soha nem unalmas.</div>
+          <div class="sent"><span class="sent-num">9</span>Van éjszakai élet és könnyebb új embereket megismerni.</div>
+          <div class="sent"><span class="sent-num">10</span><strong>A nagyvárosi élet hátrányai:</strong></div>
+          <div class="sent"><span class="sent-num">11</span>Sok a hajléktalan.</div>
+          <div class="sent"><span class="sent-num">12</span>Drága a telek és a ház.</div>
+          <div class="sent"><span class="sent-num">13</span>Mindenhol sok ember van és nagy a forgalom és dugó.</div>
+          <div class="sent"><span class="sent-num">14</span>Stresszes az élet és névtelenül élsz.</div>
+          <div class="sent"><span class="sent-num">15</span>A levegő büdös és nagy a bűnözés.</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:#e8f7ec;">📖</span> Das Leben auf dem Lande <button class="read-btn" onclick="speakAll('land-de')" style="margin-left:auto;">🔊 Egész szöveg</button></div>
+      <div class="parallel">
+        <div class="par-de" id="land-de">
+          <div class="par-label">🇩🇪 Deutsch</div>
+          <div class="sent"><span class="sent-num">1</span><button class="speak-btn" onclick="speak('Vorteile des Lebens auf dem Lande:')">🔊</button><strong>Vorteile des Lebens auf dem Lande:</strong></div>
+          <div class="sent"><span class="sent-num">2</span><button class="speak-btn" onclick="speak('Es ist ruhig und die Natur ist in der Nähe.')">🔊</button>Es ist ruhig und die Natur ist in der Nähe.</div>
+          <div class="sent"><span class="sent-num">3</span><button class="speak-btn" onclick="speak('Der Verkehr ist klein und die Luft ist frisch und sauber.')">🔊</button>Der Verkehr ist klein und die Luft ist frisch und sauber.</div>
+          <div class="sent"><span class="sent-num">4</span><button class="speak-btn" onclick="speak('Die Menschen leben in Einfamilienhäusern.')">🔊</button>Die Menschen leben in Einfamilienhäusern.</div>
+          <div class="sent"><span class="sent-num">5</span><button class="speak-btn" onclick="speak('Die Grundstücke und die Häuser kosten weniger.')">🔊</button>Die Grundstücke und die Häuser kosten weniger.</div>
+          <div class="sent"><span class="sent-num">6</span><button class="speak-btn" onclick="speak('Die Menschen haben einen Garten mit Salat, Gurke, Tomaten, Kartoffeln und Obst.')">🔊</button>Die Menschen haben einen Garten mit Salat, Gurke, Tomaten, Kartoffeln und Obst.</div>
+          <div class="sent"><span class="sent-num">7</span><button class="speak-btn" onclick="speak('Jeder kennt jeden und die Menschen sind hilfsbereit und freundlich.')">🔊</button>Jeder kennt jeden und die Menschen sind hilfsbereit und freundlich.</div>
+          <div class="sent"><span class="sent-num">8</span><button class="speak-btn" onclick="speak('Nachteile des Lebens auf dem Lande:')">🔊</button><strong>Nachteile des Lebens auf dem Lande:</strong></div>
+          <div class="sent"><span class="sent-num">9</span><button class="speak-btn" onclick="speak('Es gibt wenige Einkaufsmöglichkeiten und Schulen.')">🔊</button>Es gibt wenige Einkaufsmöglichkeiten und Schulen.</div>
+          <div class="sent"><span class="sent-num">10</span><button class="speak-btn" onclick="speak('Die Verkehrsmöglichkeiten sind nicht immer gut.')">🔊</button>Die Verkehrsmöglichkeiten sind nicht immer gut.</div>
+          <div class="sent"><span class="sent-num">11</span><button class="speak-btn" onclick="speak('Es gibt wenige Unterhaltungs- und Sportmöglichkeiten.')">🔊</button>Es gibt wenige Unterhaltungs- und Sportmöglichkeiten.</div>
+          <div class="sent"><span class="sent-num">12</span><button class="speak-btn" onclick="speak('Die Infrastruktur ist nicht immer gut.')">🔊</button>Die Infrastruktur ist nicht immer gut.</div>
+          <div class="sent"><span class="sent-num">13</span><button class="speak-btn" onclick="speak('Es gibt wenige Arbeitsplätze und wenig oder kein Restaurant.')">🔊</button>Es gibt wenige Arbeitsplätze und wenig oder kein Restaurant.</div>
+          <div class="sent"><span class="sent-num">14</span><button class="speak-btn" onclick="speak('Das Leben ist manchmal langweilig.')">🔊</button>Das Leben ist manchmal langweilig.</div>
+        </div>
+        <div class="par-hu">
+          <div class="par-label">🇭🇺 Magyar fordítás</div>
+          <div class="sent"><span class="sent-num">1</span><strong>A vidéki élet előnyei:</strong></div>
+          <div class="sent"><span class="sent-num">2</span>Csendes és a természet közel van.</div>
+          <div class="sent"><span class="sent-num">3</span>Kicsi a forgalom és a levegő friss, tiszta.</div>
+          <div class="sent"><span class="sent-num">4</span>Az emberek családi házban laknak.</div>
+          <div class="sent"><span class="sent-num">5</span>Kevesebbe kerülnek a telkek és házak.</div>
+          <div class="sent"><span class="sent-num">6</span>Az embereknek kertjük van salátával, uborkával, paradicsommal, krumplival és gyümölccsel.</div>
+          <div class="sent"><span class="sent-num">7</span>Mindenki ismer mindenkit és az emberek segítőkészek és kedvesek.</div>
+          <div class="sent"><span class="sent-num">8</span><strong>A vidéki élet hátrányai:</strong></div>
+          <div class="sent"><span class="sent-num">9</span>Kevés a bevásárlási lehetőség és iskola.</div>
+          <div class="sent"><span class="sent-num">10</span>Nem mindig jók a közlekedési lehetőségek.</div>
+          <div class="sent"><span class="sent-num">11</span>Kevés a szórakozási és sportolási lehetőség.</div>
+          <div class="sent"><span class="sent-num">12</span>Az infrastruktúra nem mindig jó.</div>
+          <div class="sent"><span class="sent-num">13</span>Kevés a munkalehetőség és nincs vagy kevés az étterem.</div>
+          <div class="sent"><span class="sent-num">14</span>Az élet néha unalmas.</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:#e8f0ff;">📋</span> Szókincs — Großstadt / Lande</div>
+      <div class="quiz-toggle" onclick="toggleQuiz('vgl','tsgl')"><div class="toggle-switch" id="tsgl"><div class="toggle-knob"></div></div><span>Kvíz mód</span></div>
+      <div id="vgl">
+        <div class="sub-title">🏙️ Nagyváros</div>
+        <div class="vocab-grid">
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('die Einkaufsmöglichkeiten')">🔊</button><span class="de-word">die Einkaufsmöglichkeiten</span><span class="arr">→</span><span class="hu-word">bevásárlási lehetőségek</span></div>
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('die Verkehrsmöglichkeiten')">🔊</button><span class="de-word">die Verkehrsmöglichkeiten</span><span class="arr">→</span><span class="hu-word">közlekedési lehetőségek</span></div>
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('die Unterhaltungsmöglichkeiten')">🔊</button><span class="de-word">die Unterhaltungsmöglichkeiten</span><span class="arr">→</span><span class="hu-word">szórakozási lehetőségek</span></div>
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('die Infrastruktur')">🔊</button><span class="de-word">die Infrastruktur</span><span class="arr">→</span><span class="hu-word">infrastruktúra</span></div>
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('der Obdachlose')">🔊</button><span class="de-word">der Obdachlose</span><span class="arr">→</span><span class="hu-word">hajléktalan</span></div>
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('die Kriminalität')">🔊</button><span class="de-word">die Kriminalität</span><span class="arr">→</span><span class="hu-word">bűnözés</span></div>
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('anonym leben')">🔊</button><span class="de-word">anonym leben</span><span class="arr">→</span><span class="hu-word">névtelenül élni</span></div>
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('stressig')">🔊</button><span class="de-word">stressig</span><span class="arr">→</span><span class="hu-word">stresszes</span></div>
+        </div>
+        <div class="sub-title">🌿 Vidék</div>
+        <div class="vocab-grid">
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('auf dem Lande')">🔊</button><span class="de-word">auf dem Lande</span><span class="arr">→</span><span class="hu-word">vidéken</span></div>
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('die Luft ist frisch')">🔊</button><span class="de-word">die Luft ist frisch</span><span class="arr">→</span><span class="hu-word">a levegő friss</span></div>
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('hilfsbereit und freundlich')">🔊</button><span class="de-word">hilfsbereit und freundlich</span><span class="arr">→</span><span class="hu-word">segítőkész és kedves</span></div>
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('langweilig')">🔊</button><span class="de-word">langweilig</span><span class="arr">→</span><span class="hu-word">unalmas</span></div>
+        </div>
+        <div class="sub-title">⚖️ Összehasonlítás</div>
+        <div class="vocab-grid">
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('der Vorteil')">🔊</button><span class="de-word">der Vorteil</span><span class="arr">→</span><span class="hu-word">előny</span></div>
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('der Nachteil')">🔊</button><span class="de-word">der Nachteil</span><span class="arr">→</span><span class="hu-word">hátrány</span></div>
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('einerseits andererseits')">🔊</button><span class="de-word">einerseits… andererseits</span><span class="arr">→</span><span class="hu-word">egyrészt… másrészt</span></div>
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('im Vergleich zu')">🔊</button><span class="de-word">im Vergleich zu</span><span class="arr">→</span><span class="hu-word">-hoz képest</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="sub-panel" id="sub-t5">
+    <div class="section-title">⚽ 5. Sport</div>
+    <p class="section-sub">Sportolás, sportágak, magyar sportolók — kérdés-válasz szöveg.</p>
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:#e8f0ff;">📖</span> Szöveg — Sport-Konversation <button class="read-btn" onclick="speakAll('sp-de')" style="margin-left:auto;">🔊 Egész szöveg</button></div>
+      <div class="parallel">
+        <div class="par-de" id="sp-de">
+          <div class="par-label">🇩🇪 Deutsch</div>
+          <div class="sent"><span class="sent-num">1</span><button class="speak-btn" onclick="speak('Was für Sport treiben Sie?')">🔊</button><strong>Was für Sport treiben Sie?</strong></div>
+          <div class="sent"><span class="sent-num">2</span><button class="speak-btn" onclick="speak('Der Sport spielt eine wichtige Rolle in meinem Leben.')">🔊</button>Der Sport spielt eine wichtige Rolle in meinem Leben.</div>
+          <div class="sent"><span class="sent-num">3</span><button class="speak-btn" onclick="speak('Ich treibe Sport regelmäßig.')">🔊</button>Ich treibe Sport regelmäßig.</div>
+          <div class="sent"><span class="sent-num">4</span><button class="speak-btn" onclick="speak('Ich habe zweimal in der Woche Training.')">🔊</button>Ich habe zweimal in der Woche Training.</div>
+          <div class="sent"><span class="sent-num">5</span><button class="speak-btn" onclick="speak('Im Frühling und im Herbst kann man im Freien Sport treiben.')">🔊</button>Im Frühling und im Herbst kann man im Freien Sport treiben.</div>
+          <div class="sent"><span class="sent-num">6</span><button class="speak-btn" onclick="speak('Man kann laufen, Rad fahren, wandern und Fußball, Basketball spielen.')">🔊</button>Man kann laufen, Rad fahren, wandern und Fußball, Basketball spielen.</div>
+          <div class="sent"><span class="sent-num">7</span><button class="speak-btn" onclick="speak('Im Sommer kann man schwimmen, segeln und Beachvolleyball spielen.')">🔊</button>Im Sommer kann man schwimmen, segeln und Beachvolleyball spielen.</div>
+          <div class="sent"><span class="sent-num">8</span><button class="speak-btn" onclick="speak('Im Winter kann man Ski fahren, Schlittschuh laufen und Eishockey spielen.')">🔊</button>Im Winter kann man Ski fahren, Schlittschuh laufen und Eishockey spielen.</div>
+          <div class="sent"><span class="sent-num">9</span><button class="speak-btn" onclick="speak('Kennen Sie Extremsportarten?')">🔊</button><strong>Kennen Sie Extremsportarten?</strong></div>
+          <div class="sent"><span class="sent-num">10</span><button class="speak-btn" onclick="speak('Ich kenne viele Extremsportarten, zum Beispiel Bungee Jumping, Rafting und Free Climbing.')">🔊</button>Ich kenne viele Extremsportarten, zum Beispiel Bungee Jumping, Rafting und Free Climbing.</div>
+          <div class="sent"><span class="sent-num">11</span><button class="speak-btn" onclick="speak('Diese Sportarten sind sehr populär, aber zu gefährlich und teuer.')">🔊</button>Diese Sportarten sind sehr populär, aber zu gefährlich und teuer.</div>
+          <div class="sent"><span class="sent-num">12</span><button class="speak-btn" onclick="speak('In welchen Sportarten sind die ungarischen Sportler gut?')">🔊</button><strong>In welchen Sportarten sind die ungarischen Sportler gut?</strong></div>
+          <div class="sent"><span class="sent-num">13</span><button class="speak-btn" onclick="speak('Die ungarischen Sportler sind gut in Wassersportarten, im Wasserball, im Schwimmen und im Handball.')">🔊</button>Die ungarischen Sportler sind gut in Wassersportarten, im Wasserball, im Schwimmen und im Handball.</div>
+          <div class="sent"><span class="sent-num">14</span><button class="speak-btn" onclick="speak('Die ungarischen Sportler sind nicht gut im Fußball.')">🔊</button>Die ungarischen Sportler sind nicht gut im Fußball.</div>
+          <div class="sent"><span class="sent-num">15</span><button class="speak-btn" onclick="speak('Man kann durch Sport die Krankheiten vorbeugen.')">🔊</button>Man kann durch Sport die Krankheiten vorbeugen.</div>
+          <div class="sent"><span class="sent-num">16</span><button class="speak-btn" onclick="speak('Man lernt Disziplin und Ausdauer.')">🔊</button>Man lernt Disziplin und Ausdauer.</div>
+        </div>
+        <div class="par-hu">
+          <div class="par-label">🇭🇺 Magyar fordítás</div>
+          <div class="sent"><span class="sent-num">1</span><strong>Milyen sportot sportolsz?</strong></div>
+          <div class="sent"><span class="sent-num">2</span>A sport fontos szerepet játszik az életemben.</div>
+          <div class="sent"><span class="sent-num">3</span>Rendszeresen sportolok.</div>
+          <div class="sent"><span class="sent-num">4</span>Hetente kétszer van edzésem.</div>
+          <div class="sent"><span class="sent-num">5</span>Tavasszal és ősszel szabadban lehet sportolni.</div>
+          <div class="sent"><span class="sent-num">6</span>Lehet futni, kerékpározni, túrázni, focizni, kosárlabdázni.</div>
+          <div class="sent"><span class="sent-num">7</span>Nyáron lehet úszni, vitorlázni és strandröplabdázni.</div>
+          <div class="sent"><span class="sent-num">8</span>Télen lehet síelni, korcsolyázni és jégkorongozni.</div>
+          <div class="sent"><span class="sent-num">9</span><strong>Ismersz extrém sportokat?</strong></div>
+          <div class="sent"><span class="sent-num">10</span>Sok extrém sportot ismerek, például bungee jumping, rafting és sziklamászás.</div>
+          <div class="sent"><span class="sent-num">11</span>Ezek a sportok nagyon népszerűek, de túl veszélyesek és drágák.</div>
+          <div class="sent"><span class="sent-num">12</span><strong>Milyen sportokban jók a magyar sportolók?</strong></div>
+          <div class="sent"><span class="sent-num">13</span>A magyar sportolók jók a vízisportokban, vízilabdában, úszásban és kézilabdában.</div>
+          <div class="sent"><span class="sent-num">14</span>A magyar sportolók nem jók a fociban.</div>
+          <div class="sent"><span class="sent-num">15</span>Sporttal meg lehet előzni a betegségeket.</div>
+          <div class="sent"><span class="sent-num">16</span>Az ember fegyelmet és kitartást tanul.</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:#e8f0ff;">📋</span> Szókincs — Sport</div>
+      <div class="quiz-toggle" onclick="toggleQuiz('vsp','tssp')"><div class="toggle-switch" id="tssp"><div class="toggle-knob"></div></div><span>Kvíz mód</span></div>
+      <div id="vsp">
+        <div class="sub-title">🏃 Sportágak</div>
+        <div class="vocab-grid">
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('Sport treiben')">🔊</button><span class="de-word">Sport treiben</span><span class="arr">→</span><span class="hu-word">sportolni</span></div>
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('das Training')">🔊</button><span class="de-word">das Training</span><span class="arr">→</span><span class="hu-word">edzés</span></div>
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('im Freien')">🔊</button><span class="de-word">im Freien</span><span class="arr">→</span><span class="hu-word">a szabadban</span></div>
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('Schlittschuh laufen')">🔊</button><span class="de-word">Schlittschuh laufen</span><span class="arr">→</span><span class="hu-word">korcsolyázni</span></div>
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('die Ausdauer')">🔊</button><span class="de-word">die Ausdauer</span><span class="arr">→</span><span class="hu-word">kitartás</span></div>
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('die Disziplin')">🔊</button><span class="de-word">die Disziplin</span><span class="arr">→</span><span class="hu-word">fegyelem</span></div>
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('gefährlich')">🔊</button><span class="de-word">gefährlich</span><span class="arr">→</span><span class="hu-word">veszélyes</span></div>
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('Krankheiten vorbeugen')">🔊</button><span class="de-word">Krankheiten vorbeugen</span><span class="arr">→</span><span class="hu-word">betegséget megelőzni</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div><!-- /tarsalgasi -->
 <!-- SZITUACIOK -->
 <div class="main-panel" id="panel-szituaciok">
@@ -518,6 +701,173 @@
       </div>
     </div>
   </div>
+
+  <div class="sub-panel" id="sub-s3">
+    <div class="section-title">🏥 3. Einen Termin beim Arzt vereinbaren</div>
+    <p class="section-sub">Érettségi szituáció — orvosi időpontot kérni telefonon.</p>
+    <div class="info-box"><div class="info-title">💡 Érettségi tipp</div>Gyakorold a <strong>zöld</strong> mondatokat! XY = a te neved.</div>
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:var(--de-soft);">💬</span> Teljes dialóg fordítással</div>
+      <div class="dialog-wrap">
+        <div class="d-line d-rest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Praxis Doktor Müller, Frau Sz. am Apparat. Kann ich Ihnen helfen?')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">🏥 Rendelő</div>Praxis Doktor Müller, Frau Sz. am Apparat. Kann ich Ihnen helfen?</div><div class="d-hu">Dr. Müller rendelője, Sz. asszony a vonalban. Segíthetek?</div></div></div>
+        <div class="d-line d-guest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Guten Tag, ich heiße XY. Ich brauche dringend einen Termin bei Ihnen.')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">👤 Te</div>Guten Tag, ich heiße XY. Ich brauche dringend einen Termin bei Ihnen.</div><div class="d-hu">Jó napot, a nevem XY. Sürgősen időpontra lenne szükségem.</div></div></div>
+        <div class="d-line d-rest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Ja bitte, was fehlt Ihnen denn?')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">🏥 Rendelő</div>Ja bitte, was fehlt Ihnen denn?</div><div class="d-hu">Igen, mi a panasza?</div></div></div>
+        <div class="d-line d-guest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Ich habe Durchfall und starke Schmerzen.')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">👤 Te</div>Ich habe Durchfall und starke Schmerzen.</div><div class="d-hu">Hasmenésem van és erős fájdalmam.</div></div></div>
+        <div class="d-line d-rest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Seit wann haben Sie die Schmerzen?')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">🏥 Rendelő</div>Seit wann haben Sie die Schmerzen?</div><div class="d-hu">Mióta vannak a fájdalmak?</div></div></div>
+        <div class="d-line d-guest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Seit 2 Tagen. Ich brauche einen Termin, weil ich morgen eine wichtige Besprechung habe.')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">👤 Te</div>Seit 2 Tagen. Ich brauche einen Termin, weil ich morgen eine wichtige Besprechung habe.</div><div class="d-hu">2 napja. Időpontra van szükségem, mert holnap fontos megbeszélésem van.</div></div></div>
+        <div class="d-line d-rest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Wir haben heute noch um 10 Uhr, um 11:30 und um 12:45 freie Termine. Welcher Termin passt Ihnen?')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">🏥 Rendelő</div>Wir haben heute noch um 10 Uhr, um 11:30 und um 12:45 freie Termine. Welcher passt Ihnen?</div><div class="d-hu">Ma még van 10, 11:30 és 12:45-ös szabad időpontunk. Melyik felel meg?</div></div></div>
+        <div class="d-line d-guest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Um halb zwölf. Wie finde ich die Praxis?')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">👤 Te</div>Um halb zwölf. Wie finde ich die Praxis?</div><div class="d-hu">Fél tizenkettőkor. Hogy találom meg a rendelőt?</div></div></div>
+        <div class="d-line d-rest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Gehen Sie die Goethe Straße entlang bis zur Ampel, dann links über die Straße bis zur Praxis.')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">🏥 Rendelő</div>Gehen Sie die Goethe Straße entlang bis zur Ampel, dann links über die Straße bis zur Praxis.</div><div class="d-hu">Menjen a Goethe utcán a lámpáig, aztán balra át az utcán a rendelőig.</div></div></div>
+        <div class="d-line d-guest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Sind Sie versichert? Ja, ich habe eine internationale Versicherungskarte.')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">🏥 Rendelő</div>Sind Sie versichert?</div><div class="d-hu">Biztosított?</div></div></div>
+        <div class="d-line d-guest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Ja, ich habe eine internationale Versicherungskarte.')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">👤 Te</div>Ja, ich habe eine internationale Versicherungskarte.</div><div class="d-hu">Igen, van nemzetközi biztosítási kártyám.</div></div></div>
+        <div class="d-line d-rest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Gut, dann bezahlen Sie nichts, sonst kostet eine Untersuchung 80 Euro.')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">🏥 Rendelő</div>Gut, dann bezahlen Sie nichts, sonst kostet eine Untersuchung 80 €.</div><div class="d-hu">Rendben, akkor nem fizet semmit, egyébként egy vizsgálat 80 €.</div></div></div>
+        <div class="d-line d-guest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Vielen Dank für Ihre Hilfe! Auf Wiederhören!')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">👤 Te</div>Vielen Dank für Ihre Hilfe! Auf Wiederhören!</div><div class="d-hu">Köszönöm a segítséget! Viszontlátásra!</div></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:var(--accent-soft);">📋</span> Kulcskifejezések</div>
+      <div class="vocab-grid">
+        <div class="vocab-item"><button class="speak-btn" onclick="speak('einen Termin vereinbaren')">🔊</button><span class="de-word">einen Termin vereinbaren</span><span class="arr">→</span><span class="hu-word">időpontot egyeztetni</span></div>
+        <div class="vocab-item"><button class="speak-btn" onclick="speak('Was fehlt Ihnen?')">🔊</button><span class="de-word">Was fehlt Ihnen?</span><span class="arr">→</span><span class="hu-word">Mi a panasza?</span></div>
+        <div class="vocab-item"><button class="speak-btn" onclick="speak('starke Schmerzen')">🔊</button><span class="de-word">starke Schmerzen</span><span class="arr">→</span><span class="hu-word">erős fájdalmak</span></div>
+        <div class="vocab-item"><button class="speak-btn" onclick="speak('der Durchfall')">🔊</button><span class="de-word">der Durchfall</span><span class="arr">→</span><span class="hu-word">hasmenés</span></div>
+        <div class="vocab-item"><button class="speak-btn" onclick="speak('versichert sein')">🔊</button><span class="de-word">versichert sein</span><span class="arr">→</span><span class="hu-word">biztosítottnak lenni</span></div>
+        <div class="vocab-item"><button class="speak-btn" onclick="speak('die Untersuchung')">🔊</button><span class="de-word">die Untersuchung</span><span class="arr">→</span><span class="hu-word">vizsgálat</span></div>
+        <div class="vocab-item"><button class="speak-btn" onclick="speak('gute Besserung')">🔊</button><span class="de-word">gute Besserung</span><span class="arr">→</span><span class="hu-word">jó felépülést</span></div>
+        <div class="vocab-item"><button class="speak-btn" onclick="speak('Tabletten einnehmen')">🔊</button><span class="de-word">Tabletten einnehmen</span><span class="arr">→</span><span class="hu-word">tablettát bevenni</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-panel" id="sub-s4">
+    <div class="section-title">🗺️ 4. Orientierung in Balatonfűzfő</div>
+    <p class="section-sub">Érettségi szituáció — útbaigazítás.</p>
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:var(--de-soft);">💬</span> Teljes dialóg fordítással</div>
+      <div class="dialog-wrap">
+        <div class="d-line d-guest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Guten Tag, darf ich Sie kurz stören?')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">👤 Te</div>Guten Tag, darf ich Sie kurz stören?</div><div class="d-hu">Jó napot, szabad egy pillanatra zavarnom?</div></div></div>
+        <div class="d-line d-rest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Guten Tag, selbstverständlich. Wobei kann ich Ihnen helfen?')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">🧑 Helyi</div>Guten Tag, selbstverständlich. Wobei kann ich Ihnen helfen?</div><div class="d-hu">Jó napot, természetesen. Miben segíthetek?</div></div></div>
+        <div class="d-line d-guest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Ich möchte heute schwimmen gehen, aber das Wetter ist nicht schön, gibt es hier in der Nähe ein Schwimmbad?')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">👤 Te</div>Ich möchte heute schwimmen gehen, de das Wetter ist nicht schön. Gibt es hier ein Schwimmbad?</div><div class="d-hu">Ma úszni szeretnék, de az idő nem szép. Van itt közel uszoda?</div></div></div>
+        <div class="d-line d-rest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Ja, es gibt in Balatonfűzfő ein Schwimmbad. Nicht weit von hier.')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">🧑 Helyi</div>Ja, es gibt in Balatonfűzfő ein Schwimmbad. Nicht weit von hier.</div><div class="d-hu">Igen, van Balatonfűzfőn uszoda. Nem messze innen.</div></div></div>
+        <div class="d-line d-guest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Wie finde ich das Schwimmbad?')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">👤 Te</div>Wie finde ich das Schwimmbad?</div><div class="d-hu">Hogy találom meg az uszodát?</div></div></div>
+        <div class="d-line d-rest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Gehen Sie geradeaus die Gagarinstraße entlang bis zur Kreuzung. Überqueren Sie die Straße, dann biegen Sie links ein und sofort nach rechts. Gehen Sie 100 Meter weiter, dann sehen Sie es schon.')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">🧑 Helyi</div>Gehen Sie geradeaus die Gagarinstraße entlang bis zur Kreuzung. Überqueren Sie die Straße, biegen Sie links ein und sofort nach rechts. 100 Meter weiter sehen Sie es schon.</div><div class="d-hu">Menjen egyenesen a Gagarin utcán a kereszteződésig. Keljen át az utcán, forduljon balra, aztán rögtön jobbra. 100 méter után már látja.</div></div></div>
+        <div class="d-line d-guest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Wie lange dauert der Weg?')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">👤 Te</div>Wie lange dauert der Weg?</div><div class="d-hu">Mennyi ideig tart az út?</div></div></div>
+        <div class="d-line d-rest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('10 bis 15 Minuten zu Fuß.')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">🧑 Helyi</div>10-15 Minuten zu Fuß.</div><div class="d-hu">10-15 perc gyalog.</div></div></div>
+        <div class="d-line d-guest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Ich möchte noch Geld wechseln, gibt es hier einen Geldautomaten?')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">👤 Te</div>Ich möchte noch Geld wechseln, gibt es hier einen Geldautomaten?</div><div class="d-hu">Pénzt is szeretnék felvenni, van itt bankautomata?</div></div></div>
+        <div class="d-line d-rest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('An der Kreuzung ist eine Bäckerei, hinter der Bäckerei ist ein Geldautomat.')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">🧑 Helyi</div>An der Kreuzung ist eine Bäckerei, hinter der Bäckerei ist ein Geldautomat.</div><div class="d-hu">A kereszteződésnél van egy pékség, a pékség mögött van egy bankautomata.</div></div></div>
+        <div class="d-line d-guest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Vielen Dank für Ihre Hilfe! Auf Wiedersehen!')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">👤 Te</div>Vielen Dank für Ihre Hilfe! Auf Wiedersehen!</div><div class="d-hu">Köszönöm szépen a segítséget! Viszontlátásra!</div></div></div>
+        <div class="d-line d-rest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Gerne, ich wünsche Ihnen einen schönen Tag! Auf Wiedersehen!')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">🧑 Helyi</div>Gerne, ich wünsche Ihnen einen schönen Tag! Auf Wiedersehen!</div><div class="d-hu">Szívesen, szép napot kívánok! Viszontlátásra!</div></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:var(--accent-soft);">📋</span> Kulcskifejezések — Útbaigazítás</div>
+      <div class="vocab-grid">
+        <div class="vocab-item"><button class="speak-btn" onclick="speak('geradeaus gehen')">🔊</button><span class="de-word">geradeaus gehen</span><span class="arr">→</span><span class="hu-word">egyenesen menni</span></div>
+        <div class="vocab-item"><button class="speak-btn" onclick="speak('links einbiegen')">🔊</button><span class="de-word">links einbiegen</span><span class="arr">→</span><span class="hu-word">balra bekanyarodni</span></div>
+        <div class="vocab-item"><button class="speak-btn" onclick="speak('rechts einbiegen')">🔊</button><span class="de-word">rechts einbiegen</span><span class="arr">→</span><span class="hu-word">jobbra bekanyarodni</span></div>
+        <div class="vocab-item"><button class="speak-btn" onclick="speak('die Kreuzung')">🔊</button><span class="de-word">die Kreuzung</span><span class="arr">→</span><span class="hu-word">kereszteződés</span></div>
+        <div class="vocab-item"><button class="speak-btn" onclick="speak('die Straße überqueren')">🔊</button><span class="de-word">die Straße überqueren</span><span class="arr">→</span><span class="hu-word">átkelni az utcán</span></div>
+        <div class="vocab-item"><button class="speak-btn" onclick="speak('der Geldautomat')">🔊</button><span class="de-word">der Geldautomat</span><span class="arr">→</span><span class="hu-word">bankautomata</span></div>
+        <div class="vocab-item"><button class="speak-btn" onclick="speak('Wie lange dauert der Weg?')">🔊</button><span class="de-word">Wie lange dauert der Weg?</span><span class="arr">→</span><span class="hu-word">Mennyi ideig tart az út?</span></div>
+        <div class="vocab-item"><button class="speak-btn" onclick="speak('zu Fuß')">🔊</button><span class="de-word">zu Fuß</span><span class="arr">→</span><span class="hu-word">gyalog</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-panel" id="sub-s5">
+    <div class="section-title">🤒 5. Eine kranke Freundin besuchen</div>
+    <p class="section-sub">Érettségi szituáció — beteg barátnőt meglátogatni.</p>
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:var(--de-soft);">💬</span> Teljes dialóg fordítással</div>
+      <div class="dialog-wrap">
+        <div class="d-line d-rest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Hallo X. Es freut mich, dass du mich besuchst!')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">🤒 Eva</div>Hallo X. Es freut mich, dass du mich besuchst!</div><div class="d-hu">Szia X. Örülök, hogy meglátogattál!</div></div></div>
+        <div class="d-line d-guest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Hallo Eva, wie fühlst du dich?')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">👤 Te</div>Hallo Eva, wie fühlst du dich?</div><div class="d-hu">Szia Eva, hogy érzed magad?</div></div></div>
+        <div class="d-line d-rest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Danke für die Frage, sehr schlecht. Ich habe starke Schmerzen, mein Bein tut weh.')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">🤒 Eva</div>Danke für die Frage, sehr schlecht. Ich habe starke Schmerzen, mein Bein tut weh.</div><div class="d-hu">Köszi a kérdést, nagyon rosszul. Erős fájdalmaim vannak, fáj a lábam.</div></div></div>
+        <div class="d-line d-guest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Kann ich dir irgendwie helfen?')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">👤 Te</div>Kann ich dir irgendwie helfen?</div><div class="d-hu">Segíthetek valamiben?</div></div></div>
+        <div class="d-line d-rest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Nein, danke, ich bin froh, dass du gekommen bist. Was gibt es Neues in der Schule?')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">🤒 Eva</div>Nein, danke, ich bin froh, dass du gekommen bist. Was gibt es Neues in der Schule?</div><div class="d-hu">Nem, köszi, örülök hogy eljöttél. Mi az újság az iskolában?</div></div></div>
+        <div class="d-line d-guest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Frau Müller ist auch krank, sie hat Grippe.')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">👤 Te</div>Frau Müller ist auch krank, sie hat Grippe.</div><div class="d-hu">Müller tanárnő is beteg, influenzás.</div></div></div>
+        <div class="d-line d-guest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Ich habe dir die Hausaufgaben mitgebracht.')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">👤 Te</div>Ich habe dir die Hausaufgaben mitgebracht.</div><div class="d-hu">Hoztam neked a házi feladatokat.</div></div></div>
+        <div class="d-line d-rest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Vielen Dank dafür! Habt ihr die Kontrollarbeit in Mathe geschrieben?')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">🤒 Eva</div>Vielen Dank dafür! Habt ihr die Kontrollarbeit in Mathe geschrieben?</div><div class="d-hu">Nagyon köszönöm! Írtátok a matek dolgozatot?</div></div></div>
+        <div class="d-line d-guest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Ja, sie war sehr schwierig. Was hat der Arzt gesagt?')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">👤 Te</div>Ja, sie war sehr schwierig. Was hat der Arzt gesagt?</div><div class="d-hu">Igen, nagyon nehéz volt. Mit mondott az orvos?</div></div></div>
+        <div class="d-line d-rest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Ich muss noch lange im Bett liegen bleiben und Schmerzmittel einnehmen.')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">🤒 Eva</div>Ich muss noch lange im Bett liegen bleiben und Schmerzmittel einnehmen.</div><div class="d-hu">Még sokáig ágyban kell maradnom és fájdalomcsillapítót kell bevennem.</div></div></div>
+        <div class="d-line d-guest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Wann kommst du wieder in die Schule?')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">👤 Te</div>Wann kommst du wieder in die Schule?</div><div class="d-hu">Mikor jössz vissza az iskolába?</div></div></div>
+        <div class="d-line d-rest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Ich muss übernächste Woche zur Kontrolle gehen, dann kann ich es dir sagen.')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">🤒 Eva</div>Ich muss übernächste Woche zur Kontrolle gehen, dann kann ich es dir sagen.</div><div class="d-hu">Jövő héten kell kontrollra mennem, akkor megmondom.</div></div></div>
+        <div class="d-line d-guest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Ich muss leider gehen, wir schreiben morgen eine Arbeit in Geschichte. Gute Besserung!')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">👤 Te</div>Ich muss leider gehen, wir schreiben morgen eine Arbeit in Geschichte. Gute Besserung!</div><div class="d-hu">Sajnos mennem kell, holnap történelemből írunk. Jó felépülést!</div></div></div>
+        <div class="d-line d-rest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Danke für deinen Besuch! Ich drücke dir die Daumen! Bis bald!')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">🤒 Eva</div>Danke für deinen Besuch! Ich drücke dir die Daumen! Bis bald!</div><div class="d-hu">Köszi a látogatást! Drukkolok neked! Viszlát!</div></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:var(--accent-soft);">📋</span> Kulcskifejezések</div>
+      <div class="vocab-grid">
+        <div class="vocab-item"><button class="speak-btn" onclick="speak('Wie fühlst du dich?')">🔊</button><span class="de-word">Wie fühlst du dich?</span><span class="arr">→</span><span class="hu-word">Hogy érzed magad?</span></div>
+        <div class="vocab-item"><button class="speak-btn" onclick="speak('das Bein tut weh')">🔊</button><span class="de-word">das Bein tut weh</span><span class="arr">→</span><span class="hu-word">fáj a lábam</span></div>
+        <div class="vocab-item"><button class="speak-btn" onclick="speak('Schmerzmittel einnehmen')">🔊</button><span class="de-word">Schmerzmittel einnehmen</span><span class="arr">→</span><span class="hu-word">fájdalomcsillapítót bevenni</span></div>
+        <div class="vocab-item"><button class="speak-btn" onclick="speak('im Bett liegen bleiben')">🔊</button><span class="de-word">im Bett liegen bleiben</span><span class="arr">→</span><span class="hu-word">ágyban maradni</span></div>
+        <div class="vocab-item"><button class="speak-btn" onclick="speak('Ich drücke dir die Daumen!')">🔊</button><span class="de-word">Ich drücke dir die Daumen!</span><span class="arr">→</span><span class="hu-word">Drukkolok neked!</span></div>
+        <div class="vocab-item"><button class="speak-btn" onclick="speak('gute Besserung')">🔊</button><span class="de-word">gute Besserung</span><span class="arr">→</span><span class="hu-word">jó felépülést</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-panel" id="sub-s6">
+    <div class="section-title">📱 6. Mein Handy ist kaputt</div>
+    <p class="section-sub">Érettségi szituáció — telefon szervizbe hívni.</p>
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:var(--de-soft);">💬</span> Teljes dialóg fordítással</div>
+      <div class="dialog-wrap">
+        <div class="d-line d-rest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('I-Phone Service, Frau Szekeres am Apparat. Guten Tag! Kann ich Ihnen helfen?')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">🏪 Szerviz</div>I-Phone Service, Frau Szekeres am Apparat. Kann ich Ihnen helfen?</div><div class="d-hu">I-Phone Szerviz, Szekeres asszony a vonalban. Segíthetek?</div></div></div>
+        <div class="d-line d-guest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Guten Tag, hier spricht XY. Ich habe ein Problem, mein Handy ist kaputtgegangen.')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">👤 Te</div>Guten Tag, hier spricht XY. Ich habe ein Problem, mein Handy ist kaputtgegangen.</div><div class="d-hu">Jó napot, XY beszél. Van egy problémám, elromlott a telefonom.</div></div></div>
+        <div class="d-line d-rest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Was ist passiert?')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">🏪 Szerviz</div>Was ist passiert?</div><div class="d-hu">Mi történt?</div></div></div>
+        <div class="d-line d-guest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Es ist aus meiner Tasche runtergefallen. Ich kann es nicht mehr einschalten. Seine Garantie ist leider abgelaufen.')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">👤 Te</div>Es ist aus meiner Tasche runtergefallen. Ich kann es nicht mehr einschalten. Die Garantie ist leider abgelaufen.</div><div class="d-hu">Kiesett a táskámból. Nem tudom bekapcsolni. A garancia sajnos lejárt.</div></div></div>
+        <div class="d-line d-rest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Seit wann haben Sie dieses Problem?')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">🏪 Szerviz</div>Seit wann haben Sie dieses Problem?</div><div class="d-hu">Mióta van ez a probléma?</div></div></div>
+        <div class="d-line d-guest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Seit heute Morgen. Können Sie es reparieren?')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">👤 Te</div>Seit heute Morgen. Können Sie es reparieren?</div><div class="d-hu">Ma reggel óta. Meg tudják javítani?</div></div></div>
+        <div class="d-line d-rest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Ja, bringen Sie es zu uns ins Geschäft!')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">🏪 Szerviz</div>Ja, bringen Sie es zu uns ins Geschäft!</div><div class="d-hu">Igen, hozza be az üzletbe!</div></div></div>
+        <div class="d-line d-guest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Wann sind Sie geöffnet?')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">👤 Te</div>Wann sind Sie geöffnet?</div><div class="d-hu">Mikor vannak nyitva?</div></div></div>
+        <div class="d-line d-rest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Wir sind an den Wochentagen von 9 bis 18 Uhr geöffnet.')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">🏪 Szerviz</div>Wir sind an den Wochentagen von 9 bis 18 Uhr geöffnet.</div><div class="d-hu">Hétköznapokon 9-től 18 óráig vagyunk nyitva.</div></div></div>
+        <div class="d-line d-guest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Wie viel kostet die Reparatur?')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">👤 Te</div>Wie viel kostet die Reparatur?</div><div class="d-hu">Mennyibe kerül a javítás?</div></div></div>
+        <div class="d-line d-rest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Die Kosten kann ich nach dem Überprüfen sagen, unser Stundengebühr ist 20 Euro pro Stunde.')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">🏪 Szerviz</div>Die Kosten kann ich nach dem Überprüfen sagen, unser Stundengebühr ist 20 €/Stunde.</div><div class="d-hu">Az árat ellenőrzés után tudom megmondani, az óradíjunk 20 €/óra.</div></div></div>
+        <div class="d-line d-guest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Wie finde ich Ihr Geschäft?')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">👤 Te</div>Wie finde ich Ihr Geschäft?</div><div class="d-hu">Hogy találom meg az üzletet?</div></div></div>
+        <div class="d-line d-rest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Unser Geschäft ist in der Altstadt, in der Goethe Straße 1. Mit einem Navi ist es leicht zu finden.')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">🏪 Szerviz</div>Unser Geschäft ist in der Altstadt, in der Goethe Straße 1. Mit einem Navi ist es leicht zu finden.</div><div class="d-hu">Az üzletünk az óvárosban van, Goethe utca 1. Navigátorral könnyen megtalálható.</div></div></div>
+        <div class="d-line d-guest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Ich brauche das Handy dringend, könnte ich ein Ersatzhandy bekommen?')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">👤 Te</div>Ich brauche das Handy dringend, könnte ich ein Ersatzhandy bekommen?</div><div class="d-hu">Sürgősen szükségem van a telefonra, kaphatok cseretelefont?</div></div></div>
+        <div class="d-line d-rest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Na klar, kommen Sie zu uns und dann können wir alles besprechen.')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">🏪 Szerviz</div>Na klar, kommen Sie zu uns und dann können wir alles besprechen.</div><div class="d-hu">Természetesen, jöjjön be hozzánk és mindent megbeszélünk.</div></div></div>
+        <div class="d-line d-guest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Vielen Dank für Ihre Hilfe, ich bin in 20 Minuten dort. Auf Wiederhören!')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">👤 Te</div>Vielen Dank für Ihre Hilfe, ich bin in 20 Minuten dort. Auf Wiederhören!</div><div class="d-hu">Köszönöm a segítséget, 20 perc múlva ott vagyok. Viszontlátásra!</div></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:var(--accent-soft);">📋</span> Kulcskifejezések</div>
+      <div class="vocab-grid">
+        <div class="vocab-item"><button class="speak-btn" onclick="speak('kaputtgehen')">🔊</button><span class="de-word">kaputtgehen</span><span class="arr">→</span><span class="hu-word">elromlani, tönkremenni</span></div>
+        <div class="vocab-item"><button class="speak-btn" onclick="speak('die Garantie ist abgelaufen')">🔊</button><span class="de-word">die Garantie ist abgelaufen</span><span class="arr">→</span><span class="hu-word">lejárt a garancia</span></div>
+        <div class="vocab-item"><button class="speak-btn" onclick="speak('reparieren')">🔊</button><span class="de-word">reparieren</span><span class="arr">→</span><span class="hu-word">megjavítani</span></div>
+        <div class="vocab-item"><button class="speak-btn" onclick="speak('das Ersatzhandy')">🔊</button><span class="de-word">das Ersatzhandy</span><span class="arr">→</span><span class="hu-word">cseretelefon</span></div>
+        <div class="vocab-item"><button class="speak-btn" onclick="speak('der Stundengebühr')">🔊</button><span class="de-word">der Stundengebühr</span><span class="arr">→</span><span class="hu-word">óradíj</span></div>
+        <div class="vocab-item"><button class="speak-btn" onclick="speak('einschalten')">🔊</button><span class="de-word">einschalten</span><span class="arr">→</span><span class="hu-word">bekapcsolni</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-panel" id="sub-s8">
+    <div class="section-title">🏫 8. Eine neue Mitschülerin</div>
+    <p class="section-sub">Érettségi szituáció — új osztálytársnőt bemutatni az iskolában.</p>
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:var(--de-soft);">💬</span> Teljes dialóg fordítással</div>
+      <div class="dialog-wrap">
+        <div class="d-line d-guest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Hallo, herzlich willkommen in unserer Schule! Ich heiße XY. Wie heißt du denn?')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">👤 Te</div>Hallo, herzlich willkommen in unserer Schule! Ich heiße XY. Wie heißt du?</div><div class="d-hu">Szia, üdvözöllek az iskolánkban! XY vagyok. Te hogy hívnak?</div></div></div>
+        <div class="d-line d-rest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Hallo, ich heiße Eva Szekeres. Vielen Dank.')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">🧑 Eva</div>Hallo, ich heiße Eva Szekeres. Vielen Dank.</div><div class="d-hu">Szia, Eva Szekeres vagyok. Köszönöm szépen.</div></div></div>
+        <div class="d-line d-guest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Hast du Zeit für mich, ich würde dir gerne unsere Schule zeigen.')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">👤 Te</div>Hast du Zeit für mich? Ich würde dir gerne unsere Schule zeigen.</div><div class="d-hu">Van időd? Szívesen megmutatnám az iskolánkat.</div></div></div>
+        <div class="d-line d-rest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('O, natürlich, sehr nett!')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">🧑 Eva</div>O, natürlich, sehr nett!</div><div class="d-hu">Ó, természetesen, nagyon kedves!</div></div></div>
+        <div class="d-line d-guest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Unsere Schule besteht aus drei Gebäuden. Im Erdgeschoss findet man die Vorhalle, ein Lehrerzimmer, die Bibliothek und die Mensa.')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">👤 Te</div>Unsere Schule besteht aus drei Gebäuden. Im Erdgeschoss findet man die Vorhalle, das Lehrerzimmer, die Bibliothek und die Mensa.</div><div class="d-hu">Az iskolánk három épületből áll. A földszinten megtalálható az előcsarnok, a tanáriszoba, a könyvtár és a menza.</div></div></div>
+        <div class="d-line d-rest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Wie ist die Klasse? Wie viele Schüler lernen hier?')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">🧑 Eva</div>Wie ist die Klasse? Wie viele Schüler lernen hier?</div><div class="d-hu">Milyen az osztály? Hány tanuló van itt?</div></div></div>
+        <div class="d-line d-guest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Wir besuchen die Klasse 13. In unserer Klasse sind 24 Schüler. Wir haben eine gute Klassengemeinschaft.')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">👤 Te</div>Wir besuchen die Klasse 13. In unserer Klasse sind 24 Schüler. Wir haben eine gute Klassengemeinschaft.</div><div class="d-hu">A 13. osztályba járunk. Az osztályunkban 24 tanuló van. Jó osztályközösségünk van.</div></div></div>
+        <div class="d-line d-rest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Wie sind die Lehrer hier?')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">🧑 Eva</div>Wie sind die Lehrer hier?</div><div class="d-hu">Milyenek itt a tanárok?</div></div></div>
+        <div class="d-line d-guest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Unsere Lehrer sind nett, hilfsbereit, sie können alles gut erklären.')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">👤 Te</div>Unsere Lehrer sind nett, hilfsbereit, sie können alles gut erklären.</div><div class="d-hu">A tanáraink kedvesek, segítőkészek és mindent jól tudnak magyarázni.</div></div></div>
+        <div class="d-line d-rest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Welche Sportmöglichkeiten gibt es hier?')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">🧑 Eva</div>Welche Sportmöglichkeiten gibt es hier?</div><div class="d-hu">Milyen sportlehetőségek vannak itt?</div></div></div>
+        <div class="d-line d-guest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Es gibt eine Turnhalle und einen Sportplatz. Man kann Volleyball, Basketball spielen und laufen. Nicht weit gibt es ein Schwimmbad in Balatonfűzfő.')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">👤 Te</div>Es gibt eine Turnhalle und einen Sportplatz. Man kann Volleyball, Basketball spielen. Nicht weit gibt es ein Schwimmbad in Balatonfűzfő.</div><div class="d-hu">Van tornaterem és sportpálya. Lehet röplabdázni, kosárlabdázni. Nem messze van egy uszoda Balatonfűzfőn.</div></div></div>
+        <div class="d-line d-rest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Vielen Dank für deine Hilfe!')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">🧑 Eva</div>Vielen Dank für deine Hilfe!</div><div class="d-hu">Köszönöm szépen a segítséget!</div></div></div>
+        <div class="d-line d-guest"><div class="d-spk-btn"><button class="speak-btn" onclick="speak('Bitte schön!')">🔊</button></div><div class="d-bubble"><div class="d-de"><div class="d-speaker">👤 Te</div>Bitte schön!</div><div class="d-hu">Szívesen!</div></div></div>
+      </div>
+    </div>
+  </div>
 </div><!-- /szituaciok -->
 
 <!-- TEMAKOROK -->
@@ -527,7 +877,7 @@
     <div class="section-title">🏡 7. Unser Haus / unsere Wohnung</div>
     <p class="section-sub">Otthonunk leírása — helyiségek, bútorok, szomszédság.</p>
     <div class="card">
-      <div class="card-title"><span class="icon" style="background:var(--de-soft);">📖</span> Szöveg — Unser Haus <button class="read-btn" onclick="speakAll('h2-de')" style="margin-left:auto;">🔊 Egész szöveg</button><button onclick="openEditor('h2', 'Unser Haus')" style="padding:5px 12px;border-radius:50px;border:1.5px solid #c47c2b;background:none;color:#c47c2b;font-size:0.78rem;font-weight:600;cursor:pointer;margin-left:6px;">✏️ Szerkesztés</button></div>
+      <div class="card-title"><span class="icon" style="background:var(--de-soft);">📖</span> Szöveg — Unser Haus <button class="read-btn" onclick="speakAll('h2-de')" style="margin-left:auto;">🔊 Egész szöveg</button></div>
       <div class="parallel">
         <div class="par-de" id="h2-de">
           <div class="par-label">🇩🇪 Deutsch</div>
@@ -596,7 +946,7 @@
     <div class="section-title">🧹 10. Hausarbeit</div>
     <p class="section-sub">Háztartási munkák, ki mit csinál a családban.</p>
     <div class="card">
-      <div class="card-title"><span class="icon" style="background:var(--accent-soft);">📖</span> Szöveg — Hausarbeiten <button class="read-btn" onclick="speakAll('ha-de')" style="margin-left:auto;">🔊 Egész szöveg</button><button onclick="openEditor('ha', 'Hausarbeit')" style="padding:5px 12px;border-radius:50px;border:1.5px solid #c47c2b;background:none;color:#c47c2b;font-size:0.78rem;font-weight:600;cursor:pointer;margin-left:6px;">✏️ Szerkesztés</button></div>
+      <div class="card-title"><span class="icon" style="background:var(--accent-soft);">📖</span> Szöveg — Hausarbeiten <button class="read-btn" onclick="speakAll('ha-de')" style="margin-left:auto;">🔊 Egész szöveg</button></div>
       <div class="parallel">
         <div class="par-de" id="ha-de">
           <div class="par-label">🇩🇪 Deutsch</div>
@@ -664,6 +1014,131 @@
       </div>
     </div>
   </div>
+
+  <div class="sub-panel" id="sub-tk3">
+    <div class="section-title">🕗 3. Tagesablauf</div>
+    <p class="section-sub">Napirend — reggeltől estig.</p>
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:#e8f0ff;">📖</span> Szöveg — Tagesablauf <button class="read-btn" onclick="speakAll('ta-de')" style="margin-left:auto;">🔊 Egész szöveg</button></div>
+      <div class="parallel">
+        <div class="par-de" id="ta-de">
+          <div class="par-label">🇩🇪 Deutsch</div>
+          <div class="sent"><span class="sent-num">1</span><button class="speak-btn" onclick="speak('Ich stehe an den Wochentagen um 7 Uhr auf.')">🔊</button>Ich stehe an den Wochentagen um 7 Uhr auf.</div>
+          <div class="sent"><span class="sent-num">2</span><button class="speak-btn" onclick="speak('Ich gehe ins Bad, ich wasche mich, ich putze mir die Zähne und ich ziehe mich an.')">🔊</button>Ich gehe ins Bad, ich wasche mich, ich putze mir die Zähne und ich ziehe mich an.</div>
+          <div class="sent"><span class="sent-num">3</span><button class="speak-btn" onclick="speak('Ich frühstücke zu Hause. Ich trinke Tee oder Milchkaffee.')">🔊</button>Ich frühstücke zu Hause. Ich trinke Tee oder Milchkaffee.</div>
+          <div class="sent"><span class="sent-num">4</span><button class="speak-btn" onclick="speak('Ich fahre jeden Tag mit dem Bus zur Schule. Die Fahrt dauert 20 Minuten.')">🔊</button>Ich fahre jeden Tag mit dem Bus zur Schule. Die Fahrt dauert 20 Minuten.</div>
+          <div class="sent"><span class="sent-num">5</span><button class="speak-btn" onclick="speak('Der Unterricht beginnt um 8 und dauert bis 3. Wir haben meistens 7 oder 8 Stunden.')">🔊</button>Der Unterricht beginnt um 8 und dauert bis 3. Wir haben meistens 7 oder 8 Stunden.</div>
+          <div class="sent"><span class="sent-num">6</span><button class="speak-btn" onclick="speak('Wir lernen, lesen, schreiben, rechnen, turnen und hören Musik in der Schule.')">🔊</button>Wir lernen, lesen, schreiben, rechnen, turnen und hören Musik in der Schule.</div>
+          <div class="sent"><span class="sent-num">7</span><button class="speak-btn" onclick="speak('Nach der Schule fahre ich mit dem Bus nach Hause und esse zu Mittag.')">🔊</button>Nach der Schule fahre ich mit dem Bus nach Hause und esse zu Mittag.</div>
+          <div class="sent"><span class="sent-num">8</span><button class="speak-btn" onclick="speak('Zu Hause esse ich eine Suppe und ein Hauptgericht.')">🔊</button>Zu Hause esse ich eine Suppe und ein Hauptgericht.</div>
+          <div class="sent"><span class="sent-num">9</span><button class="speak-btn" onclick="speak('Am Nachmittag gegen 4 Uhr mache ich meine Hausaufgaben und lerne für den nächsten Tag.')">🔊</button>Am Nachmittag gegen 4 Uhr mache ich meine Hausaufgaben und lerne für den nächsten Tag.</div>
+          <div class="sent"><span class="sent-num">10</span><button class="speak-btn" onclick="speak('Nach dem Lernen spiele ich Computer, höre ich Musik oder chatte ich mit meinen Freunden.')">🔊</button>Nach dem Lernen spiele ich Computer, höre Musik oder chatte mit meinen Freunden.</div>
+          <div class="sent"><span class="sent-num">11</span><button class="speak-btn" onclick="speak('Ich esse um 6 Uhr zu Abend.')">🔊</button>Ich esse um 6 Uhr zu Abend.</div>
+          <div class="sent"><span class="sent-num">12</span><button class="speak-btn" onclick="speak('Ich dusche um 8 Uhr und putze mir die Zähne.')">🔊</button>Ich dusche um 8 Uhr und putze mir die Zähne.</div>
+          <div class="sent"><span class="sent-num">13</span><button class="speak-btn" onclick="speak('Ich gehe um 10 Uhr ins Bett und schlafe sofort ein.')">🔊</button>Ich gehe um 10 Uhr ins Bett und schlafe sofort ein.</div>
+        </div>
+        <div class="par-hu">
+          <div class="par-label">🇭🇺 Magyar fordítás</div>
+          <div class="sent"><span class="sent-num">1</span>Hétköznapokon 7 órakor kelek fel.</div>
+          <div class="sent"><span class="sent-num">2</span>Bemegyek a fürdőszobába, megmosakszom, fogat mosok és felöltözöm.</div>
+          <div class="sent"><span class="sent-num">3</span>Otthon reggelizek. Teát vagy tejeskávét iszom.</div>
+          <div class="sent"><span class="sent-num">4</span>Minden nap busszal megyek az iskolába. Az út 20 percig tart.</div>
+          <div class="sent"><span class="sent-num">5</span>Az oktatás 8-kor kezdődik és 3-ig tart. Általában 7 vagy 8 óránk van.</div>
+          <div class="sent"><span class="sent-num">6</span>Tanulunk, olvasunk, írunk, számolunk, tornázunk és zenét hallgatunk az iskolában.</div>
+          <div class="sent"><span class="sent-num">7</span>Az iskola után busszal hazamegyek és ebédelek.</div>
+          <div class="sent"><span class="sent-num">8</span>Otthon levest és főételt eszem.</div>
+          <div class="sent"><span class="sent-num">9</span>Délután 4 óra körül megcsinálom a házi feladatokat és tanulok a következő napra.</div>
+          <div class="sent"><span class="sent-num">10</span>Tanulás után számítógépezek, zenét hallgatok vagy chatelek a barátaimmal.</div>
+          <div class="sent"><span class="sent-num">11</span>6 órakor vacsorázom.</div>
+          <div class="sent"><span class="sent-num">12</span>8 órakor zuhanyozom és fogat mosok.</div>
+          <div class="sent"><span class="sent-num">13</span>10 órakor lefekszem és azonnal elalszom.</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:#e8f0ff;">📋</span> Szókincs — Tagesablauf</div>
+      <div class="quiz-toggle" onclick="toggleQuiz('vta','tsta')"><div class="toggle-switch" id="tsta"><div class="toggle-knob"></div></div><span>Kvíz mód</span></div>
+      <div id="vta">
+        <div class="sub-title">🌅 Reggel</div>
+        <div class="vocab-grid">
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('aufstehen')">🔊</button><span class="de-word">aufstehen</span><span class="arr">→</span><span class="hu-word">felkelni</span></div>
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('sich waschen')">🔊</button><span class="de-word">sich waschen</span><span class="arr">→</span><span class="hu-word">megmosakodni</span></div>
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('sich die Zähne putzen')">🔊</button><span class="de-word">sich die Zähne putzen</span><span class="arr">→</span><span class="hu-word">fogat mosni</span></div>
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('sich anziehen')">🔊</button><span class="de-word">sich anziehen</span><span class="arr">→</span><span class="hu-word">felöltözni</span></div>
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('frühstücken')">🔊</button><span class="de-word">frühstücken</span><span class="arr">→</span><span class="hu-word">reggelizni</span></div>
+        </div>
+        <div class="sub-title">🌙 Este</div>
+        <div class="vocab-grid">
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('zu Mittag essen')">🔊</button><span class="de-word">zu Mittag essen</span><span class="arr">→</span><span class="hu-word">ebédelni</span></div>
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('Hausaufgaben machen')">🔊</button><span class="de-word">Hausaufgaben machen</span><span class="arr">→</span><span class="hu-word">házi feladatot csinálni</span></div>
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('zu Abend essen')">🔊</button><span class="de-word">zu Abend essen</span><span class="arr">→</span><span class="hu-word">vacsorázni</span></div>
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('duschen')">🔊</button><span class="de-word">duschen</span><span class="arr">→</span><span class="hu-word">zuhanyozni</span></div>
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('ins Bett gehen')">🔊</button><span class="de-word">ins Bett gehen</span><span class="arr">→</span><span class="hu-word">lefeküdni</span></div>
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('einschlafen')">🔊</button><span class="de-word">einschlafen</span><span class="arr">→</span><span class="hu-word">elaludni</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-panel" id="sub-tk4">
+    <div class="section-title">🎮 4. Freizeit</div>
+    <p class="section-sub">Szabadidő — mit csinálunk iskola után és hétvégén.</p>
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:#f0e8ff;">📖</span> Szöveg — Freizeit <button class="read-btn" onclick="speakAll('fz-de')" style="margin-left:auto;">🔊 Egész szöveg</button></div>
+      <div class="parallel">
+        <div class="par-de" id="fz-de">
+          <div class="par-label">🇩🇪 Deutsch</div>
+          <div class="sent"><span class="sent-num">1</span><button class="speak-btn" onclick="speak('Ich habe leider an den Wochentagen wenig Freizeit.')">🔊</button>Ich habe leider an den Wochentagen wenig Freizeit.</div>
+          <div class="sent"><span class="sent-num">2</span><button class="speak-btn" onclick="speak('Ich sitze jeden Tag von 7:15 bis halb 3 in der Schule.')">🔊</button>Ich sitze jeden Tag von 7:15 bis halb 3 in der Schule.</div>
+          <div class="sent"><span class="sent-num">3</span><button class="speak-btn" onclick="speak('Dann muss ich noch lernen und meine Hausaufgaben machen.')">🔊</button>Dann muss ich noch lernen und meine Hausaufgaben machen.</div>
+          <div class="sent"><span class="sent-num">4</span><button class="speak-btn" onclick="speak('Abends sehe ich fern, chatte ich und surfe im Internet.')">🔊</button>Abends sehe ich fern, chatte ich und surfe im Internet.</div>
+          <div class="sent"><span class="sent-num">5</span><button class="speak-btn" onclick="speak('Am Wochenende habe ich mehr Freizeit.')">🔊</button>Am Wochenende habe ich mehr Freizeit.</div>
+          <div class="sent"><span class="sent-num">6</span><button class="speak-btn" onclick="speak('Es ist sehr wichtig, die Freizeit vernünftig einzuteilen.')">🔊</button>Es ist sehr wichtig, die Freizeit vernünftig einzuteilen.</div>
+          <div class="sent"><span class="sent-num">7</span><button class="speak-btn" onclick="speak('Zu Hause kann man computern, fernsehen, Musik hören, lesen, backen oder kochen.')">🔊</button>Zu Hause kann man computern, fernsehen, Musik hören, lesen, backen oder kochen.</div>
+          <div class="sent"><span class="sent-num">8</span><button class="speak-btn" onclick="speak('Man kann auch Sport treiben, zum Beispiel Fußball, Basketball oder Tennis spielen.')">🔊</button>Man kann auch Sport treiben, zum Beispiel Fußball, Basketball oder Tennis spielen.</div>
+          <div class="sent"><span class="sent-num">9</span><button class="speak-btn" onclick="speak('Man kann ins Kino, ins Theater, in die Disco oder auf Festivals gehen.')">🔊</button>Man kann ins Kino, ins Theater, in die Disco oder auf Festivals gehen.</div>
+          <div class="sent"><span class="sent-num">10</span><button class="speak-btn" onclick="speak('Mit meiner Familie gehen wir spazieren, wandern und manchmal ins Restaurant.')">🔊</button>Mit meiner Familie gehen wir spazieren, wandern und manchmal ins Restaurant.</div>
+          <div class="sent"><span class="sent-num">11</span><button class="speak-btn" onclick="speak('Im Sommer gehen wir an den Strand, wir schwimmen und spielen Beachvolleyball.')">🔊</button>Im Sommer gehen wir an den Strand, wir schwimmen und spielen Beachvolleyball.</div>
+          <div class="sent"><span class="sent-num">12</span><button class="speak-btn" onclick="speak('Ich wohne in Veszprém. Hier kann man einkaufen gehen, ins Kino gehen und die Burg besichtigen.')">🔊</button>Ich wohne in Veszprém. Hier kann man einkaufen, ins Kino gehen und die Burg besichtigen.</div>
+        </div>
+        <div class="par-hu">
+          <div class="par-label">🇭🇺 Magyar fordítás</div>
+          <div class="sent"><span class="sent-num">1</span>Sajnos hétköznapokon kevés szabadidőm van.</div>
+          <div class="sent"><span class="sent-num">2</span>Minden nap 7:15-től fél 3-ig az iskolában ülök.</div>
+          <div class="sent"><span class="sent-num">3</span>Utána még tanulnom kell és meg kell csinálnom a házi feladatokat.</div>
+          <div class="sent"><span class="sent-num">4</span>Este tévézek, chatelek és internetezek.</div>
+          <div class="sent"><span class="sent-num">5</span>Hétvégén több szabadidőm van.</div>
+          <div class="sent"><span class="sent-num">6</span>Nagyon fontos a szabadidőt okosan beosztani.</div>
+          <div class="sent"><span class="sent-num">7</span>Otthon lehet számítógépezni, tévézni, zenét hallgatni, olvasni, sütni vagy főzni.</div>
+          <div class="sent"><span class="sent-num">8</span>Lehet sportolni is, például focizni, kosárlabdázni vagy teniszezni.</div>
+          <div class="sent"><span class="sent-num">9</span>Lehet moziba, színházba, diszkóba vagy fesztiválra menni.</div>
+          <div class="sent"><span class="sent-num">10</span>A családommal sétálunk, túrázunk és néha étterembe megyünk.</div>
+          <div class="sent"><span class="sent-num">11</span>Nyáron strandra megyünk, úszunk és strandröplabdázunk.</div>
+          <div class="sent"><span class="sent-num">12</span>Veszprémben lakom. Itt lehet vásárolni, moziba menni és a várat megtekinteni.</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon" style="background:#f0e8ff;">📋</span> Szókincs — Freizeit</div>
+      <div class="quiz-toggle" onclick="toggleQuiz('vfz','tsfz')"><div class="toggle-switch" id="tsfz"><div class="toggle-knob"></div></div><span>Kvíz mód</span></div>
+      <div id="vfz">
+        <div class="sub-title">🏠 Otthon</div>
+        <div class="vocab-grid">
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('fernsehen')">🔊</button><span class="de-word">fernsehen</span><span class="arr">→</span><span class="hu-word">tévézni</span></div>
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('im Internet surfen')">🔊</button><span class="de-word">im Internet surfen</span><span class="arr">→</span><span class="hu-word">internetezni</span></div>
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('Musik hören')">🔊</button><span class="de-word">Musik hören</span><span class="arr">→</span><span class="hu-word">zenét hallgatni</span></div>
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('die Freizeit vernünftig einteilen')">🔊</button><span class="de-word">Freizeit vernünftig einteilen</span><span class="arr">→</span><span class="hu-word">szabadidőt okosan beosztani</span></div>
+        </div>
+        <div class="sub-title">🌆 Kimenni</div>
+        <div class="vocab-grid">
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('ins Kino gehen')">🔊</button><span class="de-word">ins Kino gehen</span><span class="arr">→</span><span class="hu-word">moziba menni</span></div>
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('ins Theater gehen')">🔊</button><span class="de-word">ins Theater gehen</span><span class="arr">→</span><span class="hu-word">színházba menni</span></div>
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('auf Festivals gehen')">🔊</button><span class="de-word">auf Festivals gehen</span><span class="arr">→</span><span class="hu-word">fesztiválra menni</span></div>
+          <div class="vocab-item"><button class="speak-btn" onclick="speak('spazieren gehen')">🔊</button><span class="de-word">spazieren gehen</span><span class="arr">→</span><span class="hu-word">sétálni menni</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div><!-- /temakorok -->
 
 </main>
@@ -711,172 +1186,6 @@ function toggleQuiz(gridId, tsId) {
   document.getElementById(gridId).classList.toggle('quiz-mode');
   document.getElementById(tsId).classList.toggle('on');
 }
-
-function openEditor(sectionId, titleText) {
-  var deEl = document.getElementById(sectionId + '-de');
-  var huEl = document.getElementById(sectionId + '-hu');
-  if (!deEl || !huEl) return;
-
-  var deSents = [];
-  deEl.querySelectorAll('.sent').forEach(function(s){
-    var c = s.cloneNode(true);
-    c.querySelectorAll('button, .sent-num').forEach(function(n){ n.remove(); });
-    deSents.push(c.innerText.trim());
-  });
-  var huSents = [];
-  huEl.querySelectorAll('.sent').forEach(function(s){
-    var c = s.cloneNode(true);
-    c.querySelectorAll('.sent-num').forEach(function(n){ n.remove(); });
-    huSents.push(c.innerText.trim());
-  });
-
-  var old = document.getElementById('edit-overlay');
-  if (old) old.remove();
-
-  var overlay = document.createElement('div');
-  overlay.id = 'edit-overlay';
-  overlay.style.position = 'fixed';
-  overlay.style.top = '0';
-  overlay.style.left = '0';
-  overlay.style.width = '100%';
-  overlay.style.height = '100%';
-  overlay.style.background = 'rgba(0,0,0,0.7)';
-  overlay.style.zIndex = '999999';
-  overlay.style.display = 'flex';
-  overlay.style.alignItems = 'flex-start';
-  overlay.style.justifyContent = 'center';
-  overlay.style.padding = '20px';
-  overlay.style.overflowY = 'auto';
-  overlay.style.boxSizing = 'border-box';
-
-  var modal = document.createElement('div');
-  modal.style.background = '#fffef9';
-  modal.style.borderRadius = '16px';
-  modal.style.width = '100%';
-  modal.style.maxWidth = '860px';
-  modal.style.padding = '24px';
-  modal.style.boxShadow = '0 8px 40px rgba(0,0,0,0.3)';
-  modal.style.marginTop = '20px';
-  modal.style.marginBottom = '20px';
-  modal.style.boxSizing = 'border-box';
-
-  var header = document.createElement('div');
-  header.style.cssText = 'display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;gap:12px;flex-wrap:wrap;';
-
-  var headerTitle = document.createElement('div');
-  headerTitle.style.cssText = 'font-family:Lora,serif;font-size:1.1rem;font-weight:600;';
-  headerTitle.textContent = '✏️ ' + titleText;
-  header.appendChild(headerTitle);
-
-  var btnRow = document.createElement('div');
-  btnRow.style.cssText = 'display:flex;gap:8px;';
-
-  var saveBtn = document.createElement('button');
-  saveBtn.textContent = '💾 Mentés';
-  saveBtn.style.cssText = 'padding:8px 20px;background:#4a7c59;color:white;border:none;border-radius:50px;font-weight:700;cursor:pointer;font-size:0.88rem;';
-
-  var closeBtn = document.createElement('button');
-  closeBtn.textContent = '✕ Mégse';
-  closeBtn.style.cssText = 'padding:8px 16px;background:#e0d8c8;color:#2a2318;border:none;border-radius:50px;font-weight:600;cursor:pointer;font-size:0.88rem;';
-  closeBtn.addEventListener('click', function(){ overlay.remove(); });
-
-  btnRow.appendChild(saveBtn);
-  btnRow.appendChild(closeBtn);
-  header.appendChild(btnRow);
-  modal.appendChild(header);
-
-  var labels = document.createElement('div');
-  labels.style.cssText = 'display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;';
-  labels.innerHTML = '<div style="font-size:0.75rem;font-weight:700;color:#3a5a8a;text-transform:uppercase;letter-spacing:.06em;">🇩🇪 Deutsch</div><div style="font-size:0.75rem;font-weight:700;color:#8a3a3a;text-transform:uppercase;letter-spacing:.06em;">🇭🇺 Magyar</div>';
-  modal.appendChild(labels);
-
-  var maxLen = Math.max(deSents.length, huSents.length);
-  for (var i = 0; i < maxLen; i++) {
-    var row = document.createElement('div');
-    row.style.cssText = 'display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px;';
-
-    var tdDe = document.createElement('textarea');
-    tdDe.setAttribute('data-lang', 'de');
-    tdDe.rows = 2;
-    tdDe.style.cssText = 'width:100%;font-size:0.85rem;padding:6px 8px;border:1.5px solid #e0d8c8;border-radius:8px;font-family:inherit;resize:vertical;box-sizing:border-box;';
-    tdDe.value = deSents[i] || '';
-
-    var tdHu = document.createElement('textarea');
-    tdHu.setAttribute('data-lang', 'hu');
-    tdHu.rows = 2;
-    tdHu.style.cssText = 'width:100%;font-size:0.85rem;padding:6px 8px;border:1.5px solid #e0d8c8;border-radius:8px;font-family:inherit;resize:vertical;box-sizing:border-box;';
-    tdHu.value = huSents[i] || '';
-
-    row.appendChild(tdDe);
-    row.appendChild(tdHu);
-    modal.appendChild(row);
-  }
-
-  var status = document.createElement('div');
-  status.style.cssText = 'margin-top:12px;font-size:0.82rem;color:#4a7c59;min-height:20px;';
-  modal.appendChild(status);
-
-  saveBtn.addEventListener('click', function() {
-    var deArr = [], huArr = [];
-    modal.querySelectorAll('textarea[data-lang="de"]').forEach(function(ta){ deArr.push(ta.value.trim()); });
-    modal.querySelectorAll('textarea[data-lang="hu"]').forEach(function(ta){ huArr.push(ta.value.trim()); });
-
-    // Mentés localStorage-ba
-    localStorage.setItem('edit-' + sectionId, JSON.stringify({ de: deArr, hu: huArr }));
-
-    // Frissítés a DOM-ban
-    applyEdits(sectionId, deArr, huArr);
-    status.textContent = '✅ Mentve!';
-    setTimeout(function(){ overlay.remove(); }, 800);
-  });
-
-  overlay.appendChild(modal);
-  overlay.addEventListener('click', function(e){ if (e.target === overlay) overlay.remove(); });
-  document.body.appendChild(overlay);
-}
-
-function applyEdits(sectionId, deArr, huArr) {
-  var deEl = document.getElementById(sectionId + '-de');
-  var huEl = document.getElementById(sectionId + '-hu');
-  if (deEl) {
-    var sents = deEl.querySelectorAll('.sent');
-    deArr.forEach(function(txt, i) {
-      if (!sents[i]) return;
-      var btn = sents[i].querySelector('button.speak-btn');
-      var num = sents[i].querySelector('.sent-num');
-      sents[i].innerHTML = '';
-      if (num) sents[i].appendChild(num.cloneNode(true));
-      if (btn) { btn.onclick = function(){ speak(txt); }; sents[i].appendChild(btn); }
-      sents[i].appendChild(document.createTextNode(txt));
-    });
-  }
-  if (huEl) {
-    var sents = huEl.querySelectorAll('.sent');
-    huArr.forEach(function(txt, i) {
-      if (!sents[i]) return;
-      var num = sents[i].querySelector('.sent-num');
-      sents[i].innerHTML = '';
-      if (num) sents[i].appendChild(num.cloneNode(true));
-      sents[i].appendChild(document.createTextNode(txt));
-    });
-  }
-}
-
-function loadSavedEdits() {
-  var sections = ['z','f','u','g','h2','ha'];
-  sections.forEach(function(id) {
-    var saved = localStorage.getItem('edit-' + id);
-    if (!saved) return;
-    try {
-      var data = JSON.parse(saved);
-      applyEdits(id, data.de, data.hu);
-    } catch(e) {}
-  });
-}
-
-window.addEventListener('load', function() {
-  loadSavedEdits();
-});
 </script>
 </body>
 </html>
