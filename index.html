@@ -782,7 +782,7 @@ async function loadSection(sectionId) {
   if (!currentUser) return;
   try {
     const snap = await db.collection(getCollection()).doc(sectionId).get();
-    if (!snap.exists()) return;
+    if (!snap.exists) return;
     const data = snap.data();
     if (data.de) {
       const deEl = document.getElementById(sectionId + '-de');
