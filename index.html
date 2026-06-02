@@ -670,51 +670,53 @@
 
 </main>
 <script>
+// ── Navigáció ──
 function showMain(id) {
   document.querySelectorAll('.main-panel').forEach(p => p.classList.remove('active'));
   document.getElementById('panel-' + id).classList.add('active');
-  const ids = ['home','tarsalgasi','szituaciok','temakorok'];
-  document.querySelectorAll('.main-tab').forEach((b,i) => b.classList.toggle('active', ids[i] === id));
-  document.querySelectorAll('.sub-tabs-wrap').forEach(w => w.classList.remove('active'));
-  const sub = document.getElementById('sub-' + id);
+  var ids = ['home','tarsalgasi','szituaciok','temakorok'];
+  document.querySelectorAll('.main-tab').forEach(function(b,i){ b.classList.toggle('active', ids[i] === id); });
+  document.querySelectorAll('.sub-tabs-wrap').forEach(function(w){ w.classList.remove('active'); });
+  var sub = document.getElementById('sub-' + id);
   if (sub) sub.classList.add('active');
   window.scrollTo({top:0, behavior:'smooth'});
 }
 function showSub(cat, subId) {
-  document.querySelectorAll('#panel-' + cat + ' .sub-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('#panel-' + cat + ' .sub-panel').forEach(function(p){ p.classList.remove('active'); });
   document.getElementById('sub-' + subId).classList.add('active');
-  const wrap = document.getElementById('sub-' + cat);
-  if (wrap) wrap.querySelectorAll('.sub-tab').forEach(b => {
-    const oc = b.getAttribute('onclick') || '';
-    b.classList.toggle('active', oc.includes("'" + subId + "'"));
+  var wrap = document.getElementById('sub-' + cat);
+  if (wrap) wrap.querySelectorAll('.sub-tab').forEach(function(b){
+    var oc = b.getAttribute('onclick') || '';
+    b.classList.toggle('active', oc.indexOf("'" + subId + "'") !== -1);
   });
   window.scrollTo({top:80, behavior:'smooth'});
 }
 function speak(text) {
   if (!window.speechSynthesis) return;
   window.speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(text);
+  var u = new SpeechSynthesisUtterance(text);
   u.lang = 'de-DE'; u.rate = 0.88;
   window.speechSynthesis.speak(u);
 }
 function speakAll(blockId) {
-  const el = document.getElementById(blockId);
+  var el = document.getElementById(blockId);
   if (!el) return;
-  const text = Array.from(el.querySelectorAll('.sent')).map(s => {
-    const c = s.cloneNode(true);
-    c.querySelectorAll('button, .sent-num').forEach(n => n.remove());
-    return c.innerText.trim();
-  }).filter(Boolean).join(' ');
-  speak(text);
+  var parts = [];
+  el.querySelectorAll('.sent').forEach(function(s){
+    var c = s.cloneNode(true);
+    c.querySelectorAll('button, .sent-num').forEach(function(n){ n.remove(); });
+    var t = c.innerText.trim();
+    if (t) parts.push(t);
+  });
+  speak(parts.join(' '));
 }
 function toggleQuiz(gridId, tsId) {
   document.getElementById(gridId).classList.toggle('quiz-mode');
   document.getElementById(tsId).classList.toggle('on');
 }
 
-// ══ FIREBASE + EDITOR ══
-
-const firebaseConfig = {
+// ── Firebase ──
+var firebaseConfig = {
   apiKey: "AIzaSyCbIlKU-nUIq7z62wYFY8eG6p2hHeYUEDY",
   authDomain: "nemet-web.firebaseapp.com",
   projectId: "nemet-web",
@@ -722,202 +724,288 @@ const firebaseConfig = {
   messagingSenderId: "452049382230",
   appId: "1:452049382230:web:0c112b0e4000cc5f5f04f7"
 };
-
 var db = null;
-function initFirebase() {
-  try {
-    if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
-    db = firebase.firestore();
-    console.log('Firebase OK');
-  } catch(e) { console.error('Firebase init hiba:', e); }
-}
-
 var USERS = { marcell: 'Marcell', dani: 'Dani' };
 var SECTION_IDS = ['z','f','u','g','h2','ha'];
 var currentUser = localStorage.getItem('deutsch-user') || null;
 
-function getCollection() {
-  return 'deutsch-lernen-' + currentUser;
+function initFirebase() {
+  try {
+    if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+    db = firebase.firestore();
+  } catch(e) { console.error('Firebase init hiba:', e); }
 }
 
-// ── Felhasználó-választó modal ──
+function getCollection() { return 'deutsch-lernen-' + currentUser; }
+
+// ── User picker ──
 function showUserPicker(onDone) {
-  const overlay = document.createElement('div');
-  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px;';
-  overlay.innerHTML = `
-    <div style="background:#fffef9;border-radius:20px;padding:32px 28px;max-width:380px;width:100%;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,0.3);">
-      <div style="font-family:'Lora',serif;font-size:1.3rem;font-weight:600;margin-bottom:6px;">🇩🇪 Deutsch Lernen</div>
-      <div style="color:#7a6f5e;font-size:0.88rem;margin-bottom:24px;">Ki vagy te?</div>
-      <div style="display:flex;gap:12px;justify-content:center;">
-        <button data-user="marcell" style="padding:14px 28px;border-radius:14px;border:2px solid #3a5a8a;background:#d4e2f4;color:#1a3050;font-family:'Lora',serif;font-size:1rem;font-weight:600;cursor:pointer;transition:all .18s;">👤 Marcell</button>
-        <button data-user="dani" style="padding:14px 28px;border-radius:14px;border:2px solid #4a7c59;background:#d4eadb;color:#1a3a25;font-family:'Lora',serif;font-size:1rem;font-weight:600;cursor:pointer;transition:all .18s;">👤 Dani</button>
-      </div>
-      <div style="margin-top:16px;font-size:0.75rem;color:#aaa;">A választás megjegyezve a böngészőben</div>
-    </div>
-  `;
-  document.body.appendChild(overlay);
-  overlay.querySelectorAll('button[data-user]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      currentUser = btn.dataset.user;
-      localStorage.setItem('deutsch-user', currentUser);
+  var old = document.getElementById('user-picker-overlay');
+  if (old) old.remove();
+  var overlay = document.createElement('div');
+  overlay.id = 'user-picker-overlay';
+  overlay.style.position = 'fixed';
+  overlay.style.top = '0';
+  overlay.style.left = '0';
+  overlay.style.width = '100%';
+  overlay.style.height = '100%';
+  overlay.style.background = 'rgba(0,0,0,0.6)';
+  overlay.style.zIndex = '999999';
+  overlay.style.display = 'flex';
+  overlay.style.alignItems = 'center';
+  overlay.style.justifyContent = 'center';
+  overlay.style.padding = '16px';
+
+  var box = document.createElement('div');
+  box.style.background = '#fffef9';
+  box.style.borderRadius = '20px';
+  box.style.padding = '32px 28px';
+  box.style.maxWidth = '380px';
+  box.style.width = '100%';
+  box.style.textAlign = 'center';
+  box.style.boxShadow = '0 8px 40px rgba(0,0,0,0.3)';
+
+  var title = document.createElement('div');
+  title.style.fontFamily = 'Lora, serif';
+  title.style.fontSize = '1.3rem';
+  title.style.fontWeight = '600';
+  title.style.marginBottom = '20px';
+  title.textContent = 'Ki vagy te?';
+  box.appendChild(title);
+
+  var btnWrap = document.createElement('div');
+  btnWrap.style.display = 'flex';
+  btnWrap.style.gap = '12px';
+  btnWrap.style.justifyContent = 'center';
+
+  ['marcell','dani'].forEach(function(user) {
+    var btn = document.createElement('button');
+    btn.textContent = (user === 'marcell' ? '👤 Marcell' : '👤 Dani');
+    btn.style.padding = '14px 28px';
+    btn.style.borderRadius = '14px';
+    btn.style.border = '2px solid ' + (user === 'marcell' ? '#3a5a8a' : '#4a7c59');
+    btn.style.background = (user === 'marcell' ? '#d4e2f4' : '#d4eadb');
+    btn.style.color = (user === 'marcell' ? '#1a3050' : '#1a3a25');
+    btn.style.fontSize = '1rem';
+    btn.style.fontWeight = '600';
+    btn.style.cursor = 'pointer';
+    btn.addEventListener('click', function() {
+      currentUser = user;
+      localStorage.setItem('deutsch-user', user);
       overlay.remove();
       updateUserBadge();
-      onDone();
+      if (onDone) onDone();
     });
+    btnWrap.appendChild(btn);
   });
+  box.appendChild(btnWrap);
+  overlay.appendChild(box);
+  document.body.appendChild(overlay);
 }
 
 function updateUserBadge() {
-  const existing = document.getElementById('user-badge');
+  var existing = document.getElementById('user-badge');
   if (existing) existing.remove();
-  const badge = document.createElement('div');
+  var badge = document.createElement('div');
   badge.id = 'user-badge';
-  badge.title = 'Felhasználó váltása';
   badge.style.cssText = 'display:flex;align-items:center;gap:6px;padding:5px 12px;border-radius:50px;background:#f0ebe0;border:1.5px solid #e0d8c8;font-size:0.8rem;font-weight:600;color:#2a2318;cursor:pointer;';
-  badge.innerHTML = `👤 ${USERS[currentUser]} <span style="color:#c47c2b;font-size:0.7rem;">▼</span>`;
-  badge.addEventListener('click', () => {
+  badge.innerHTML = '👤 ' + USERS[currentUser] + ' <span style="color:#c47c2b;font-size:0.7rem;">▼</span>';
+  badge.addEventListener('click', function() {
     localStorage.removeItem('deutsch-user');
     currentUser = null;
-    showUserPicker(() => SECTION_IDS.forEach(loadSection));
+    showUserPicker(function(){ SECTION_IDS.forEach(loadSection); });
   });
-  document.querySelector('.header-inner').appendChild(badge);
+  var header = document.querySelector('.header-inner');
+  if (header) header.appendChild(badge);
 }
 
-// ── Betöltés Firestore-ból ──
-async function loadSection(sectionId) {
-  if (!currentUser) return;
-  try {
-    const snap = await db.collection(getCollection()).doc(sectionId).get();
+// ── Betöltés ──
+function loadSection(sectionId) {
+  if (!currentUser || !db) return;
+  db.collection(getCollection()).doc(sectionId).get().then(function(snap) {
     if (!snap.exists) return;
-    const data = snap.data();
+    var data = snap.data();
     if (data.de) {
-      const deEl = document.getElementById(sectionId + '-de');
+      var deEl = document.getElementById(sectionId + '-de');
       if (deEl) {
-        const sents = deEl.querySelectorAll('.sent');
-        data.de.forEach((txt, i) => {
+        var sents = deEl.querySelectorAll('.sent');
+        data.de.forEach(function(txt, i) {
           if (!sents[i]) return;
-          const btn = sents[i].querySelector('button.speak-btn');
-          const num = sents[i].querySelector('.sent-num');
+          var btn = sents[i].querySelector('button.speak-btn');
+          var num = sents[i].querySelector('.sent-num');
           sents[i].innerHTML = '';
           if (num) sents[i].appendChild(num.cloneNode(true));
-          if (btn) { btn.setAttribute('onclick', `speak('${txt.replace(/'/g,"\\'")}')`) ; sents[i].appendChild(btn); }
+          if (btn) { btn.onclick = function(){ speak(txt); }; sents[i].appendChild(btn); }
           sents[i].appendChild(document.createTextNode(txt));
         });
       }
     }
     if (data.hu) {
-      const huEl = document.getElementById(sectionId + '-hu');
+      var huEl = document.getElementById(sectionId + '-hu');
       if (huEl) {
-        const sents = huEl.querySelectorAll('.sent');
-        data.hu.forEach((txt, i) => {
+        var sents = huEl.querySelectorAll('.sent');
+        data.hu.forEach(function(txt, i) {
           if (!sents[i]) return;
-          const num = sents[i].querySelector('.sent-num');
+          var num = sents[i].querySelector('.sent-num');
           sents[i].innerHTML = '';
           if (num) sents[i].appendChild(num.cloneNode(true));
           sents[i].appendChild(document.createTextNode(txt));
         });
       }
     }
-  } catch(e) { console.warn('Firebase betöltés hiba:', e); }
+  }).catch(function(e){ console.warn('Betöltés hiba:', e); });
 }
 
-// ── Szerkesztő modal ──
+// ── Szerkesztő ──
 function openEditor(sectionId, titleText) {
-  console.log('openEditor called', sectionId, currentUser);
-  if (!currentUser) { showUserPicker(() => openEditor(sectionId, titleText)); return; }
-  const deEl = document.getElementById(sectionId + '-de');
-  const huEl = document.getElementById(sectionId + '-hu');
-  if (!deEl || !huEl) return;
-
-  const deSents = Array.from(deEl.querySelectorAll('.sent')).map(s => {
-    const c = s.cloneNode(true);
-    c.querySelectorAll('button, .sent-num').forEach(n => n.remove());
-    return c.innerText.trim();
-  });
-  const huSents = Array.from(huEl.querySelectorAll('.sent')).map(s => {
-    const c = s.cloneNode(true);
-    c.querySelectorAll('.sent-num').forEach(n => n.remove());
-    return c.innerText.trim();
-  });
-
-  const overlay = document.createElement('div');
-  overlay.id = 'edit-overlay';
-  overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);z-index:99999;display:flex;align-items:center;justify-content:center;padding:16px;';
-
-  const modal = document.createElement('div');
-  modal.style.cssText = 'background:#fffef9;border-radius:16px;width:100%;max-width:860px;max-height:90vh;overflow-y:auto;padding:24px;box-shadow:0 8px 40px rgba(0,0,0,0.25);';
-
-  let rows = '';
-  const maxLen = Math.max(deSents.length, huSents.length);
-  for (let i = 0; i < maxLen; i++) {
-    rows += `<tr>
-      <td style="padding:4px 6px;vertical-align:top;width:50%;">
-        <textarea data-lang="de" data-idx="${i}" rows="2" style="width:100%;font-size:0.85rem;padding:6px 8px;border:1.5px solid #e0d8c8;border-radius:8px;font-family:inherit;resize:vertical;">${(deSents[i]||'').replace(/</g,'&lt;')}</textarea>
-      </td>
-      <td style="padding:4px 6px;vertical-align:top;width:50%;">
-        <textarea data-lang="hu" data-idx="${i}" rows="2" style="width:100%;font-size:0.85rem;padding:6px 8px;border:1.5px solid #e0d8c8;border-radius:8px;font-family:inherit;resize:vertical;">${(huSents[i]||'').replace(/</g,'&lt;')}</textarea>
-      </td>
-    </tr>`;
+  if (!currentUser) {
+    showUserPicker(function(){ openEditor(sectionId, titleText); });
+    return;
   }
 
-  modal.innerHTML = `
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;gap:12px;flex-wrap:wrap;">
-      <div style="font-family:'Lora',serif;font-size:1.1rem;font-weight:600;">✏️ ${USERS[currentUser]} — ${titleText}</div>
-      <div style="display:flex;gap:8px;">
-        <button id="edit-save-btn" style="padding:8px 20px;background:#4a7c59;color:white;border:none;border-radius:50px;font-weight:700;cursor:pointer;font-size:0.88rem;">💾 Mentés</button>
-        <button onclick="document.getElementById('edit-overlay').remove()" style="padding:8px 16px;background:#e0d8c8;color:#2a2318;border:none;border-radius:50px;font-weight:600;cursor:pointer;font-size:0.88rem;">✕ Mégse</button>
-      </div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:10px;">
-      <div style="font-size:0.75rem;font-weight:700;color:#3a5a8a;text-transform:uppercase;letter-spacing:.06em;padding:0 6px;">🇩🇪 Deutsch</div>
-      <div style="font-size:0.75rem;font-weight:700;color:#8a3a3a;text-transform:uppercase;letter-spacing:.06em;padding:0 6px;">🇭🇺 Magyar</div>
-    </div>
-    <table style="width:100%;border-collapse:collapse;">${rows}</table>
-    <div id="edit-status" style="margin-top:12px;font-size:0.82rem;color:#4a7c59;min-height:20px;"></div>
-  `;
+  var deEl = document.getElementById(sectionId + '-de');
+  var huEl = document.getElementById(sectionId + '-hu');
+  if (!deEl || !huEl) { alert('Elem nem található: ' + sectionId); return; }
+
+  var deSents = [];
+  deEl.querySelectorAll('.sent').forEach(function(s){
+    var c = s.cloneNode(true);
+    c.querySelectorAll('button, .sent-num').forEach(function(n){ n.remove(); });
+    deSents.push(c.innerText.trim());
+  });
+  var huSents = [];
+  huEl.querySelectorAll('.sent').forEach(function(s){
+    var c = s.cloneNode(true);
+    c.querySelectorAll('.sent-num').forEach(function(n){ n.remove(); });
+    huSents.push(c.innerText.trim());
+  });
+
+  // Overlay
+  var old = document.getElementById('edit-overlay');
+  if (old) old.remove();
+
+  var overlay = document.createElement('div');
+  overlay.id = 'edit-overlay';
+  overlay.style.position = 'fixed';
+  overlay.style.top = '0';
+  overlay.style.left = '0';
+  overlay.style.width = '100%';
+  overlay.style.height = '100%';
+  overlay.style.background = 'rgba(0,0,0,0.7)';
+  overlay.style.zIndex = '999999';
+  overlay.style.display = 'flex';
+  overlay.style.alignItems = 'flex-start';
+  overlay.style.justifyContent = 'center';
+  overlay.style.padding = '20px';
+  overlay.style.overflowY = 'auto';
+  overlay.style.boxSizing = 'border-box';
+
+  // Modal
+  var modal = document.createElement('div');
+  modal.style.background = '#fffef9';
+  modal.style.borderRadius = '16px';
+  modal.style.width = '100%';
+  modal.style.maxWidth = '860px';
+  modal.style.padding = '24px';
+  modal.style.boxShadow = '0 8px 40px rgba(0,0,0,0.3)';
+  modal.style.marginTop = '20px';
+  modal.style.marginBottom = '20px';
+
+  // Header
+  var header = document.createElement('div');
+  header.style.cssText = 'display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;gap:12px;flex-wrap:wrap;';
+
+  var headerTitle = document.createElement('div');
+  headerTitle.style.cssText = 'font-family:Lora,serif;font-size:1.1rem;font-weight:600;';
+  headerTitle.textContent = '✏️ ' + USERS[currentUser] + ' — ' + titleText;
+
+  var btnRow = document.createElement('div');
+  btnRow.style.cssText = 'display:flex;gap:8px;';
+
+  var saveBtn = document.createElement('button');
+  saveBtn.id = 'edit-save-btn';
+  saveBtn.textContent = '💾 Mentés';
+  saveBtn.style.cssText = 'padding:8px 20px;background:#4a7c59;color:white;border:none;border-radius:50px;font-weight:700;cursor:pointer;font-size:0.88rem;';
+
+  var closeBtn = document.createElement('button');
+  closeBtn.textContent = '✕ Mégse';
+  closeBtn.style.cssText = 'padding:8px 16px;background:#e0d8c8;color:#2a2318;border:none;border-radius:50px;font-weight:600;cursor:pointer;font-size:0.88rem;';
+  closeBtn.addEventListener('click', function(){ overlay.remove(); });
+
+  btnRow.appendChild(saveBtn);
+  btnRow.appendChild(closeBtn);
+  header.appendChild(headerTitle);
+  header.appendChild(btnRow);
+  modal.appendChild(header);
+
+  // Column labels
+  var labels = document.createElement('div');
+  labels.style.cssText = 'display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:8px;';
+  labels.innerHTML = '<div style="font-size:0.75rem;font-weight:700;color:#3a5a8a;text-transform:uppercase;letter-spacing:.06em;padding:0 6px;">🇩🇪 Deutsch</div><div style="font-size:0.75rem;font-weight:700;color:#8a3a3a;text-transform:uppercase;letter-spacing:.06em;padding:0 6px;">🇭🇺 Magyar</div>';
+  modal.appendChild(labels);
+
+  // Rows
+  var maxLen = Math.max(deSents.length, huSents.length);
+  for (var i = 0; i < maxLen; i++) {
+    var row = document.createElement('div');
+    row.style.cssText = 'display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px;';
+
+    var tdDe = document.createElement('textarea');
+    tdDe.dataset.lang = 'de';
+    tdDe.dataset.idx = i;
+    tdDe.rows = 2;
+    tdDe.style.cssText = 'width:100%;font-size:0.85rem;padding:6px 8px;border:1.5px solid #e0d8c8;border-radius:8px;font-family:inherit;resize:vertical;box-sizing:border-box;';
+    tdDe.value = deSents[i] || '';
+
+    var tdHu = document.createElement('textarea');
+    tdHu.dataset.lang = 'hu';
+    tdHu.dataset.idx = i;
+    tdHu.rows = 2;
+    tdHu.style.cssText = 'width:100%;font-size:0.85rem;padding:6px 8px;border:1.5px solid #e0d8c8;border-radius:8px;font-family:inherit;resize:vertical;box-sizing:border-box;';
+    tdHu.value = huSents[i] || '';
+
+    row.appendChild(tdDe);
+    row.appendChild(tdHu);
+    modal.appendChild(row);
+  }
+
+  // Status
+  var status = document.createElement('div');
+  status.id = 'edit-status';
+  status.style.cssText = 'margin-top:12px;font-size:0.82rem;color:#4a7c59;min-height:20px;';
+  modal.appendChild(status);
+
+  // Save
+  saveBtn.addEventListener('click', function() {
+    saveBtn.textContent = '⏳ Mentés...';
+    saveBtn.disabled = true;
+    var deArr = [], huArr = [];
+    modal.querySelectorAll('textarea[data-lang="de"]').forEach(function(ta){ deArr.push(ta.value.trim()); });
+    modal.querySelectorAll('textarea[data-lang="hu"]').forEach(function(ta){ huArr.push(ta.value.trim()); });
+    if (!db) { status.textContent = '❌ Firebase nem elérhető'; saveBtn.textContent = '💾 Mentés'; saveBtn.disabled = false; return; }
+    db.collection(getCollection()).doc(sectionId).set({ de: deArr, hu: huArr }).then(function() {
+      status.textContent = '✅ Mentve!';
+      setTimeout(function(){ overlay.remove(); loadSection(sectionId); }, 1000);
+    }).catch(function(e) {
+      status.textContent = '❌ Hiba: ' + e.message;
+      saveBtn.textContent = '💾 Mentés';
+      saveBtn.disabled = false;
+    });
+  });
 
   overlay.appendChild(modal);
-  document.body.style.overflow = 'hidden';
+  overlay.addEventListener('click', function(e){ if (e.target === overlay) overlay.remove(); });
   document.body.appendChild(overlay);
-  overlay.addEventListener('click', e => { if (e.target === overlay) { overlay.remove(); document.body.style.overflow = ''; } });
-
-  document.getElementById('edit-save-btn').addEventListener('click', async () => {
-    const btn = document.getElementById('edit-save-btn');
-    btn.textContent = '⏳ Mentés...'; btn.disabled = true;
-    const deArr = [], huArr = [];
-    modal.querySelectorAll('textarea[data-lang="de"]').forEach(ta => deArr.push(ta.value.trim()));
-    modal.querySelectorAll('textarea[data-lang="hu"]').forEach(ta => huArr.push(ta.value.trim()));
-    try {
-      await db.collection(getCollection()).doc(sectionId).set({ de: deArr, hu: huArr });
-      document.getElementById('edit-status').textContent = '✅ Mentve!';
-      setTimeout(() => { overlay.remove(); loadSection(sectionId); }, 1000);
-    } catch(e) {
-      document.getElementById('edit-status').textContent = '❌ Hiba: ' + e.message;
-      btn.textContent = '💾 Mentés'; btn.disabled = false;
-    }
-  });
 }
 
-// ── Edit gombok ──
-function addEditButtons() { /* buttons already in HTML */ }
-
-// ── Expose globals ──
-window.showMain = showMain;
-window.showSub = showSub;
-window.speak = speak;
-window.speakAll = speakAll;
-window.toggleQuiz = toggleQuiz;
-window.openEditor = openEditor;
-
 // ── Init ──
-window.addEventListener('load', () => {
+window.addEventListener('load', function() {
   initFirebase();
-  addEditButtons();
   if (currentUser) {
     updateUserBadge();
     SECTION_IDS.forEach(loadSection);
   } else {
-    showUserPicker(() => SECTION_IDS.forEach(loadSection));
+    showUserPicker(function(){ SECTION_IDS.forEach(loadSection); });
   }
 });
 </script>
