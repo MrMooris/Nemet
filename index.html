@@ -4,8 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Deutsch Lernen 🇩🇪</title>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -670,9 +668,8 @@
 
 </main>
 <script>
-// ── Navigáció ──
 function showMain(id) {
-  document.querySelectorAll('.main-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.main-panel').forEach(function(p){ p.classList.remove('active'); });
   document.getElementById('panel-' + id).classList.add('active');
   var ids = ['home','tarsalgasi','szituaciok','temakorok'];
   document.querySelectorAll('.main-tab').forEach(function(b,i){ b.classList.toggle('active', ids[i] === id); });
@@ -715,157 +712,10 @@ function toggleQuiz(gridId, tsId) {
   document.getElementById(tsId).classList.toggle('on');
 }
 
-// ── Firebase ──
-var firebaseConfig = {
-  apiKey: "AIzaSyCbIlKU-nUIq7z62wYFY8eG6p2hHeYUEDY",
-  authDomain: "nemet-web.firebaseapp.com",
-  projectId: "nemet-web",
-  storageBucket: "nemet-web.firebasestorage.app",
-  messagingSenderId: "452049382230",
-  appId: "1:452049382230:web:0c112b0e4000cc5f5f04f7"
-};
-var db = null;
-var USERS = { marcell: 'Marcell', dani: 'Dani' };
-var SECTION_IDS = ['z','f','u','g','h2','ha'];
-var currentUser = localStorage.getItem('deutsch-user') || null;
-
-function initFirebase() {
-  try {
-    if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
-    db = firebase.firestore();
-  } catch(e) { console.error('Firebase init hiba:', e); }
-}
-
-function getCollection() { return 'deutsch-lernen-' + currentUser; }
-
-// ── User picker ──
-function showUserPicker(onDone) {
-  var old = document.getElementById('user-picker-overlay');
-  if (old) old.remove();
-  var overlay = document.createElement('div');
-  overlay.id = 'user-picker-overlay';
-  overlay.style.position = 'fixed';
-  overlay.style.top = '0';
-  overlay.style.left = '0';
-  overlay.style.width = '100%';
-  overlay.style.height = '100%';
-  overlay.style.background = 'rgba(0,0,0,0.6)';
-  overlay.style.zIndex = '999999';
-  overlay.style.display = 'flex';
-  overlay.style.alignItems = 'center';
-  overlay.style.justifyContent = 'center';
-  overlay.style.padding = '16px';
-
-  var box = document.createElement('div');
-  box.style.background = '#fffef9';
-  box.style.borderRadius = '20px';
-  box.style.padding = '32px 28px';
-  box.style.maxWidth = '380px';
-  box.style.width = '100%';
-  box.style.textAlign = 'center';
-  box.style.boxShadow = '0 8px 40px rgba(0,0,0,0.3)';
-
-  var title = document.createElement('div');
-  title.style.fontFamily = 'Lora, serif';
-  title.style.fontSize = '1.3rem';
-  title.style.fontWeight = '600';
-  title.style.marginBottom = '20px';
-  title.textContent = 'Ki vagy te?';
-  box.appendChild(title);
-
-  var btnWrap = document.createElement('div');
-  btnWrap.style.display = 'flex';
-  btnWrap.style.gap = '12px';
-  btnWrap.style.justifyContent = 'center';
-
-  ['marcell','dani'].forEach(function(user) {
-    var btn = document.createElement('button');
-    btn.textContent = (user === 'marcell' ? '👤 Marcell' : '👤 Dani');
-    btn.style.padding = '14px 28px';
-    btn.style.borderRadius = '14px';
-    btn.style.border = '2px solid ' + (user === 'marcell' ? '#3a5a8a' : '#4a7c59');
-    btn.style.background = (user === 'marcell' ? '#d4e2f4' : '#d4eadb');
-    btn.style.color = (user === 'marcell' ? '#1a3050' : '#1a3a25');
-    btn.style.fontSize = '1rem';
-    btn.style.fontWeight = '600';
-    btn.style.cursor = 'pointer';
-    btn.addEventListener('click', function() {
-      currentUser = user;
-      localStorage.setItem('deutsch-user', user);
-      overlay.remove();
-      updateUserBadge();
-      if (onDone) onDone();
-    });
-    btnWrap.appendChild(btn);
-  });
-  box.appendChild(btnWrap);
-  overlay.appendChild(box);
-  document.body.appendChild(overlay);
-}
-
-function updateUserBadge() {
-  var existing = document.getElementById('user-badge');
-  if (existing) existing.remove();
-  var badge = document.createElement('div');
-  badge.id = 'user-badge';
-  badge.style.cssText = 'display:flex;align-items:center;gap:6px;padding:5px 12px;border-radius:50px;background:#f0ebe0;border:1.5px solid #e0d8c8;font-size:0.8rem;font-weight:600;color:#2a2318;cursor:pointer;';
-  badge.innerHTML = '👤 ' + USERS[currentUser] + ' <span style="color:#c47c2b;font-size:0.7rem;">▼</span>';
-  badge.addEventListener('click', function() {
-    localStorage.removeItem('deutsch-user');
-    currentUser = null;
-    showUserPicker(function(){ SECTION_IDS.forEach(loadSection); });
-  });
-  var header = document.querySelector('.header-inner');
-  if (header) header.appendChild(badge);
-}
-
-// ── Betöltés ──
-function loadSection(sectionId) {
-  if (!currentUser || !db) return;
-  db.collection(getCollection()).doc(sectionId).get().then(function(snap) {
-    if (!snap.exists) return;
-    var data = snap.data();
-    if (data.de) {
-      var deEl = document.getElementById(sectionId + '-de');
-      if (deEl) {
-        var sents = deEl.querySelectorAll('.sent');
-        data.de.forEach(function(txt, i) {
-          if (!sents[i]) return;
-          var btn = sents[i].querySelector('button.speak-btn');
-          var num = sents[i].querySelector('.sent-num');
-          sents[i].innerHTML = '';
-          if (num) sents[i].appendChild(num.cloneNode(true));
-          if (btn) { btn.onclick = function(){ speak(txt); }; sents[i].appendChild(btn); }
-          sents[i].appendChild(document.createTextNode(txt));
-        });
-      }
-    }
-    if (data.hu) {
-      var huEl = document.getElementById(sectionId + '-hu');
-      if (huEl) {
-        var sents = huEl.querySelectorAll('.sent');
-        data.hu.forEach(function(txt, i) {
-          if (!sents[i]) return;
-          var num = sents[i].querySelector('.sent-num');
-          sents[i].innerHTML = '';
-          if (num) sents[i].appendChild(num.cloneNode(true));
-          sents[i].appendChild(document.createTextNode(txt));
-        });
-      }
-    }
-  }).catch(function(e){ console.warn('Betöltés hiba:', e); });
-}
-
-// ── Szerkesztő ──
 function openEditor(sectionId, titleText) {
-  if (!currentUser) {
-    showUserPicker(function(){ openEditor(sectionId, titleText); });
-    return;
-  }
-
   var deEl = document.getElementById(sectionId + '-de');
   var huEl = document.getElementById(sectionId + '-hu');
-  if (!deEl || !huEl) { alert('Elem nem található: ' + sectionId); return; }
+  if (!deEl || !huEl) return;
 
   var deSents = [];
   deEl.querySelectorAll('.sent').forEach(function(s){
@@ -880,7 +730,6 @@ function openEditor(sectionId, titleText) {
     huSents.push(c.innerText.trim());
   });
 
-  // Overlay
   var old = document.getElementById('edit-overlay');
   if (old) old.remove();
 
@@ -900,7 +749,6 @@ function openEditor(sectionId, titleText) {
   overlay.style.overflowY = 'auto';
   overlay.style.boxSizing = 'border-box';
 
-  // Modal
   var modal = document.createElement('div');
   modal.style.background = '#fffef9';
   modal.style.borderRadius = '16px';
@@ -910,20 +758,20 @@ function openEditor(sectionId, titleText) {
   modal.style.boxShadow = '0 8px 40px rgba(0,0,0,0.3)';
   modal.style.marginTop = '20px';
   modal.style.marginBottom = '20px';
+  modal.style.boxSizing = 'border-box';
 
-  // Header
   var header = document.createElement('div');
   header.style.cssText = 'display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;gap:12px;flex-wrap:wrap;';
 
   var headerTitle = document.createElement('div');
   headerTitle.style.cssText = 'font-family:Lora,serif;font-size:1.1rem;font-weight:600;';
-  headerTitle.textContent = '✏️ ' + USERS[currentUser] + ' — ' + titleText;
+  headerTitle.textContent = '✏️ ' + titleText;
+  header.appendChild(headerTitle);
 
   var btnRow = document.createElement('div');
   btnRow.style.cssText = 'display:flex;gap:8px;';
 
   var saveBtn = document.createElement('button');
-  saveBtn.id = 'edit-save-btn';
   saveBtn.textContent = '💾 Mentés';
   saveBtn.style.cssText = 'padding:8px 20px;background:#4a7c59;color:white;border:none;border-radius:50px;font-weight:700;cursor:pointer;font-size:0.88rem;';
 
@@ -934,32 +782,27 @@ function openEditor(sectionId, titleText) {
 
   btnRow.appendChild(saveBtn);
   btnRow.appendChild(closeBtn);
-  header.appendChild(headerTitle);
   header.appendChild(btnRow);
   modal.appendChild(header);
 
-  // Column labels
   var labels = document.createElement('div');
-  labels.style.cssText = 'display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:8px;';
-  labels.innerHTML = '<div style="font-size:0.75rem;font-weight:700;color:#3a5a8a;text-transform:uppercase;letter-spacing:.06em;padding:0 6px;">🇩🇪 Deutsch</div><div style="font-size:0.75rem;font-weight:700;color:#8a3a3a;text-transform:uppercase;letter-spacing:.06em;padding:0 6px;">🇭🇺 Magyar</div>';
+  labels.style.cssText = 'display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;';
+  labels.innerHTML = '<div style="font-size:0.75rem;font-weight:700;color:#3a5a8a;text-transform:uppercase;letter-spacing:.06em;">🇩🇪 Deutsch</div><div style="font-size:0.75rem;font-weight:700;color:#8a3a3a;text-transform:uppercase;letter-spacing:.06em;">🇭🇺 Magyar</div>';
   modal.appendChild(labels);
 
-  // Rows
   var maxLen = Math.max(deSents.length, huSents.length);
   for (var i = 0; i < maxLen; i++) {
     var row = document.createElement('div');
     row.style.cssText = 'display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px;';
 
     var tdDe = document.createElement('textarea');
-    tdDe.dataset.lang = 'de';
-    tdDe.dataset.idx = i;
+    tdDe.setAttribute('data-lang', 'de');
     tdDe.rows = 2;
     tdDe.style.cssText = 'width:100%;font-size:0.85rem;padding:6px 8px;border:1.5px solid #e0d8c8;border-radius:8px;font-family:inherit;resize:vertical;box-sizing:border-box;';
     tdDe.value = deSents[i] || '';
 
     var tdHu = document.createElement('textarea');
-    tdHu.dataset.lang = 'hu';
-    tdHu.dataset.idx = i;
+    tdHu.setAttribute('data-lang', 'hu');
     tdHu.rows = 2;
     tdHu.style.cssText = 'width:100%;font-size:0.85rem;padding:6px 8px;border:1.5px solid #e0d8c8;border-radius:8px;font-family:inherit;resize:vertical;box-sizing:border-box;';
     tdHu.value = huSents[i] || '';
@@ -969,28 +812,22 @@ function openEditor(sectionId, titleText) {
     modal.appendChild(row);
   }
 
-  // Status
   var status = document.createElement('div');
-  status.id = 'edit-status';
   status.style.cssText = 'margin-top:12px;font-size:0.82rem;color:#4a7c59;min-height:20px;';
   modal.appendChild(status);
 
-  // Save
   saveBtn.addEventListener('click', function() {
-    saveBtn.textContent = '⏳ Mentés...';
-    saveBtn.disabled = true;
     var deArr = [], huArr = [];
     modal.querySelectorAll('textarea[data-lang="de"]').forEach(function(ta){ deArr.push(ta.value.trim()); });
     modal.querySelectorAll('textarea[data-lang="hu"]').forEach(function(ta){ huArr.push(ta.value.trim()); });
-    if (!db) { status.textContent = '❌ Firebase nem elérhető'; saveBtn.textContent = '💾 Mentés'; saveBtn.disabled = false; return; }
-    db.collection(getCollection()).doc(sectionId).set({ de: deArr, hu: huArr }).then(function() {
-      status.textContent = '✅ Mentve!';
-      setTimeout(function(){ overlay.remove(); loadSection(sectionId); }, 1000);
-    }).catch(function(e) {
-      status.textContent = '❌ Hiba: ' + e.message;
-      saveBtn.textContent = '💾 Mentés';
-      saveBtn.disabled = false;
-    });
+
+    // Mentés localStorage-ba
+    localStorage.setItem('edit-' + sectionId, JSON.stringify({ de: deArr, hu: huArr }));
+
+    // Frissítés a DOM-ban
+    applyEdits(sectionId, deArr, huArr);
+    status.textContent = '✅ Mentve!';
+    setTimeout(function(){ overlay.remove(); }, 800);
   });
 
   overlay.appendChild(modal);
@@ -998,15 +835,47 @@ function openEditor(sectionId, titleText) {
   document.body.appendChild(overlay);
 }
 
-// ── Init ──
-window.addEventListener('load', function() {
-  initFirebase();
-  if (currentUser) {
-    updateUserBadge();
-    SECTION_IDS.forEach(loadSection);
-  } else {
-    showUserPicker(function(){ SECTION_IDS.forEach(loadSection); });
+function applyEdits(sectionId, deArr, huArr) {
+  var deEl = document.getElementById(sectionId + '-de');
+  var huEl = document.getElementById(sectionId + '-hu');
+  if (deEl) {
+    var sents = deEl.querySelectorAll('.sent');
+    deArr.forEach(function(txt, i) {
+      if (!sents[i]) return;
+      var btn = sents[i].querySelector('button.speak-btn');
+      var num = sents[i].querySelector('.sent-num');
+      sents[i].innerHTML = '';
+      if (num) sents[i].appendChild(num.cloneNode(true));
+      if (btn) { btn.onclick = function(){ speak(txt); }; sents[i].appendChild(btn); }
+      sents[i].appendChild(document.createTextNode(txt));
+    });
   }
+  if (huEl) {
+    var sents = huEl.querySelectorAll('.sent');
+    huArr.forEach(function(txt, i) {
+      if (!sents[i]) return;
+      var num = sents[i].querySelector('.sent-num');
+      sents[i].innerHTML = '';
+      if (num) sents[i].appendChild(num.cloneNode(true));
+      sents[i].appendChild(document.createTextNode(txt));
+    });
+  }
+}
+
+function loadSavedEdits() {
+  var sections = ['z','f','u','g','h2','ha'];
+  sections.forEach(function(id) {
+    var saved = localStorage.getItem('edit-' + id);
+    if (!saved) return;
+    try {
+      var data = JSON.parse(saved);
+      applyEdits(id, data.de, data.hu);
+    } catch(e) {}
+  });
+}
+
+window.addEventListener('load', function() {
+  loadSavedEdits();
 });
 </script>
 </body>
