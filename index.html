@@ -1146,7 +1146,7 @@
 </main>
 <script>
 // ── Navigáció ──
-function showMain(id) {
+function showMain(id, noHash) {
   document.querySelectorAll('.main-panel').forEach(function(p){ p.classList.remove('active'); });
   document.getElementById('panel-' + id).classList.add('active');
   var ids = ['home','tarsalgasi','szituaciok','temakorok'];
@@ -1154,9 +1154,10 @@ function showMain(id) {
   document.querySelectorAll('.sub-tabs-wrap').forEach(function(w){ w.classList.remove('active'); });
   var sub = document.getElementById('sub-' + id);
   if (sub) sub.classList.add('active');
+  if (!noHash) history.replaceState(null, '', '#' + id);
   window.scrollTo({top:0, behavior:'smooth'});
 }
-function showSub(cat, subId) {
+function showSub(cat, subId, noHash) {
   document.querySelectorAll('#panel-' + cat + ' .sub-panel').forEach(function(p){ p.classList.remove('active'); });
   document.getElementById('sub-' + subId).classList.add('active');
   var wrap = document.getElementById('sub-' + cat);
@@ -1164,6 +1165,7 @@ function showSub(cat, subId) {
     var oc = b.getAttribute('onclick') || '';
     b.classList.toggle('active', oc.indexOf("'" + subId + "'") !== -1);
   });
+  if (!noHash) history.replaceState(null, '', '#' + cat + '-' + subId);
   window.scrollTo({top:80, behavior:'smooth'});
 }
 function speak(text) {
@@ -1217,8 +1219,7 @@ function showUserPicker(onDone) {
       localStorage.setItem('dl-user', currentUser);
       ov.remove();
       updateUserBadge();
-      loadAllSections();
-      if (onDone) onDone();
+      location.reload();
     });
     btnWrap.appendChild(btn);
   });
@@ -1357,6 +1358,7 @@ function loadAllSections() {
     db.collection(getCollection()).doc(id).get().then(function(snap) {
       if (!snap.exists) return;
       var data = snap.data();
+      if (!data.de || data.de.length === 0 || (data.de.length === 1 && !data.de[0])) return;
       localStorage.setItem(storageKey(id), JSON.stringify(data));
       applySection(id, data);
     }).catch(function(e){ console.warn('Firebase betöltés:', id, e); });
@@ -1365,6 +1367,7 @@ function loadAllSections() {
     db.collection(getCollection()).doc('sit-' + id).get().then(function(snap) {
       if (!snap.exists) return;
       var data = snap.data();
+      if (!data.de || data.de.length === 0) return;
       localStorage.setItem(storageKey('sit-' + id), JSON.stringify(data));
       applySituation(id, data);
     }).catch(function(e){ console.warn('Firebase szituáció betöltés:', id, e); });
@@ -1865,14 +1868,33 @@ function addEditButtons() {
 }
 
 // ── Init ──
+function restoreNav() {
+  var hash = window.location.hash.replace('#', '');
+  if (!hash) return;
+  // Format: "tarsalgasi-t1" or just "tarsalgasi"
+  var parts = hash.split('-');
+  // sub panels have ids like t1, s3, tk7 — could be "tarsalgasi-t1" or "temakorok-tk7"
+  // main panels: home, tarsalgasi, szituaciok, temakorok
+  var mains = ['home','tarsalgasi','szituaciok','temakorok'];
+  if (parts.length >= 2 && mains.indexOf(parts[0]) !== -1) {
+    var cat = parts[0];
+    var subId = parts.slice(1).join('-');
+    showMain(cat, true);
+    showSub(cat, subId, true);
+  } else if (mains.indexOf(hash) !== -1) {
+    showMain(hash, true);
+  }
+}
+
 window.addEventListener('load', function(){
   initFirebase();
   if (currentUser) {
     updateUserBadge();
     loadAllSections();
     addEditButtons();
+    restoreNav();
   } else {
-    showUserPicker(function(){ addEditButtons(); });
+    showUserPicker(function(){ addEditButtons(); restoreNav(); });
   }
 });
 </script>
