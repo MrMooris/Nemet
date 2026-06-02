@@ -110,6 +110,8 @@
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
 </style>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 </head>
 <body>
 <header>
@@ -208,7 +210,7 @@
           <div class="sent"><span class="sent-num">11</span><button class="speak-btn" onclick="speak('Ich möchte frei sein und viele Abenteuer erleben.')">🔊</button>Ich möchte frei sein und viele Abenteuer erleben.</div>
           <div class="sent"><span class="sent-num">12</span><button class="speak-btn" onclick="speak('Vielleicht denke ich später anders, aber jetzt ist Reisen mein größter Traum.')">🔊</button>Vielleicht denke ich später anders, aber jetzt ist Reisen mein größter Traum.</div>
         </div>
-        <div class="par-hu">
+        <div class="par-hu" id="z-hu">
           <div class="par-label">🇭🇺 Magyar fordítás</div>
           <div class="sent"><span class="sent-num">1</span><strong>Mit szeretnél csinálni az érettségi után?</strong></div>
           <div class="sent"><span class="sent-num">2</span>Az érettségi után először pihenni szeretnék, de utána a munkára és az angol tanulásra fokuszálnék.</div>
@@ -282,7 +284,7 @@
           <div class="sent"><span class="sent-num">15</span><button class="speak-btn" onclick="speak('Er gibt mir Ratschläge und unterstützt mich auch in schlechten Zeiten.')">🔊</button>Er gibt mir Ratschläge und unterstützt mich auch in schlechten Zeiten.</div>
           <div class="sent"><span class="sent-num">16</span><button class="speak-btn" onclick="speak('Wir vertrauen uns gegenseitig — ein guter Freund nutzt mich niemals aus.')">🔊</button>Wir vertrauen uns gegenseitig — ein guter Freund nutzt mich niemals aus.</div>
         </div>
-        <div class="par-hu">
+        <div class="par-hu" id="f-hu">
           <div class="par-label">🇭🇺 Magyar fordítás</div>
           <div class="sent"><span class="sent-num">1</span><strong>Sok barátod van?</strong></div>
           <div class="sent"><span class="sent-num">2</span>Sok barátom van, de csak egy legjobb barátom van.</div>
@@ -357,7 +359,7 @@
           <div class="sent"><span class="sent-num">12</span><button class="speak-btn" onclick="speak('Am Balaton kann man schwimmen, segeln, angeln, Rad fahren und wandern.')">🔊</button>Am Balaton kann man schwimmen, segeln, angeln, Rad fahren und wandern.</div>
           <div class="sent"><span class="sent-num">13</span><button class="speak-btn" onclick="speak('Im Winter kann man Schlittschuh laufen. In Eplény kann man Ski fahren.')">🔊</button>Im Winter kann man Schlittschuh laufen. In Eplény kann man Ski fahren.</div>
         </div>
-        <div class="par-hu">
+        <div class="par-hu" id="u-hu">
           <div class="par-label">🇭🇺 Magyar fordítás</div>
           <div class="sent"><span class="sent-num">1</span><strong>Miért utazunk nyaralni?</strong></div>
           <div class="sent"><span class="sent-num">2</span>Pihenni és felfrissülni szeretne az ember.</div>
@@ -430,7 +432,7 @@
           <div class="sent"><span class="sent-num">13</span><button class="speak-btn" onclick="speak('Man kann auch Geld überweisen, Geld abheben und eine Kreditkarte beantragen.')">🔊</button>Man kann auch Geld überweisen, Geld abheben und eine Kreditkarte beantragen.</div>
           <div class="sent"><span class="sent-num">14</span><button class="speak-btn" onclick="speak('Die Leute nehmen Kredit meistens für ein Haus oder für ein Auto auf.')">🔊</button>Die Leute nehmen Kredit meistens für ein Haus oder für ein Auto auf.</div>
         </div>
-        <div class="par-hu">
+        <div class="par-hu" id="g-hu">
           <div class="par-label">🇭🇺 Magyar fordítás</div>
           <div class="sent"><span class="sent-num">1</span><strong>Van zsebpénzed?</strong></div>
           <div class="sent"><span class="sent-num">2</span>Van zsebpénzem, az ösztöndíj 25 000 Ft.</div>
@@ -503,7 +505,7 @@
           <div class="sent"><span class="sent-num">14</span><button class="speak-btn" onclick="speak('Das Leben ist stressig und man lebt anonym.')">🔊</button>Das Leben ist stressig und man lebt anonym.</div>
           <div class="sent"><span class="sent-num">15</span><button class="speak-btn" onclick="speak('Die Luft ist schmutzig und die Kriminalität ist hoch.')">🔊</button>Die Luft ist schmutzig und die Kriminalität ist hoch.</div>
         </div>
-        <div class="par-hu">
+        <div class="par-hu" id="gs-hu">
           <div class="par-label">🇭🇺 Magyar fordítás</div>
           <div class="sent"><span class="sent-num">1</span><strong>A nagyvárosi élet előnyei:</strong></div>
           <div class="sent"><span class="sent-num">2</span>Sok bevásárlási lehetőség van.</div>
@@ -543,7 +545,7 @@
           <div class="sent"><span class="sent-num">13</span><button class="speak-btn" onclick="speak('Es gibt wenige Arbeitsplätze und wenig oder kein Restaurant.')">🔊</button>Es gibt wenige Arbeitsplätze und wenig oder kein Restaurant.</div>
           <div class="sent"><span class="sent-num">14</span><button class="speak-btn" onclick="speak('Das Leben ist manchmal langweilig.')">🔊</button>Das Leben ist manchmal langweilig.</div>
         </div>
-        <div class="par-hu">
+        <div class="par-hu" id="land-hu">
           <div class="par-label">🇭🇺 Magyar fordítás</div>
           <div class="sent"><span class="sent-num">1</span><strong>A vidéki élet előnyei:</strong></div>
           <div class="sent"><span class="sent-num">2</span>Csendes és a természet közel van.</div>
@@ -621,7 +623,7 @@
           <div class="sent"><span class="sent-num">15</span><button class="speak-btn" onclick="speak('Man kann durch Sport die Krankheiten vorbeugen.')">🔊</button>Man kann durch Sport die Krankheiten vorbeugen.</div>
           <div class="sent"><span class="sent-num">16</span><button class="speak-btn" onclick="speak('Man lernt Disziplin und Ausdauer.')">🔊</button>Man lernt Disziplin und Ausdauer.</div>
         </div>
-        <div class="par-hu">
+        <div class="par-hu" id="sp-hu">
           <div class="par-label">🇭🇺 Magyar fordítás</div>
           <div class="sent"><span class="sent-num">1</span><strong>Milyen sportot sportolsz?</strong></div>
           <div class="sent"><span class="sent-num">2</span>A sport fontos szerepet játszik az életemben.</div>
@@ -894,7 +896,7 @@
           <div class="sent"><span class="sent-num">11</span><button class="speak-btn" onclick="speak('Wir haben auch einen großen Garten mit Obst und Gemüse.')">🔊</button>Wir haben auch einen großen Garten mit Obst und Gemüse.</div>
           <div class="sent"><span class="sent-num">12</span><button class="speak-btn" onclick="speak('Ich wohne gern hier, weil es ruhig ist und alles in der Nähe ist.')">🔊</button>Ich wohne gern hier, weil es ruhig ist und alles in der Nähe ist.</div>
         </div>
-        <div class="par-hu">
+        <div class="par-hu" id="h2-hu">
           <div class="par-label">🇭🇺 Magyar fordítás</div>
           <div class="sent"><span class="sent-num">1</span>Hajmaskéren lakom, Veszprém közelében.</div>
           <div class="sent"><span class="sent-num">2</span>A falunak 2000 lakosa van és 15 km-re van Veszprémtől.</div>
@@ -964,7 +966,7 @@
           <div class="sent"><span class="sent-num">12</span><button class="speak-btn" onclick="speak('Ich halte mein Zimmer sauber. Samstags sauge ich Staub und wische den Boden.')">🔊</button><strong>Ich</strong> halte mein Zimmer sauber. Samstags sauge ich Staub und wische den Boden.</div>
           <div class="sent"><span class="sent-num">13</span><button class="speak-btn" onclick="speak('Vor dem Mittagessen decke ich den Tisch, danach räume ich ihn ab.')">🔊</button>Vor dem Mittagessen decke ich den Tisch, danach räume ich ihn ab.</div>
         </div>
-        <div class="par-hu">
+        <div class="par-hu" id="ha-hu">
           <div class="par-label">🇭🇺 Magyar fordítás</div>
           <div class="sent"><span class="sent-num">1</span>Egy háztartásban mindig sok tennivaló van.</div>
           <div class="sent"><span class="sent-num">2</span>Minden nap kell főzni, sütni és mosogatni.</div>
@@ -1037,7 +1039,7 @@
           <div class="sent"><span class="sent-num">12</span><button class="speak-btn" onclick="speak('Ich dusche um 8 Uhr und putze mir die Zähne.')">🔊</button>Ich dusche um 8 Uhr und putze mir die Zähne.</div>
           <div class="sent"><span class="sent-num">13</span><button class="speak-btn" onclick="speak('Ich gehe um 10 Uhr ins Bett und schlafe sofort ein.')">🔊</button>Ich gehe um 10 Uhr ins Bett und schlafe sofort ein.</div>
         </div>
-        <div class="par-hu">
+        <div class="par-hu" id="ta-hu">
           <div class="par-label">🇭🇺 Magyar fordítás</div>
           <div class="sent"><span class="sent-num">1</span>Hétköznapokon 7 órakor kelek fel.</div>
           <div class="sent"><span class="sent-num">2</span>Bemegyek a fürdőszobába, megmosakszom, fogat mosok és felöltözöm.</div>
@@ -1101,7 +1103,7 @@
           <div class="sent"><span class="sent-num">11</span><button class="speak-btn" onclick="speak('Im Sommer gehen wir an den Strand, wir schwimmen und spielen Beachvolleyball.')">🔊</button>Im Sommer gehen wir an den Strand, wir schwimmen und spielen Beachvolleyball.</div>
           <div class="sent"><span class="sent-num">12</span><button class="speak-btn" onclick="speak('Ich wohne in Veszprém. Hier kann man einkaufen gehen, ins Kino gehen und die Burg besichtigen.')">🔊</button>Ich wohne in Veszprém. Hier kann man einkaufen, ins Kino gehen und die Burg besichtigen.</div>
         </div>
-        <div class="par-hu">
+        <div class="par-hu" id="fz-hu">
           <div class="par-label">🇭🇺 Magyar fordítás</div>
           <div class="sent"><span class="sent-num">1</span>Sajnos hétköznapokon kevés szabadidőm van.</div>
           <div class="sent"><span class="sent-num">2</span>Minden nap 7:15-től fél 3-ig az iskolában ülök.</div>
@@ -1143,6 +1145,7 @@
 
 </main>
 <script>
+// ── Navigáció ──
 function showMain(id) {
   document.querySelectorAll('.main-panel').forEach(function(p){ p.classList.remove('active'); });
   document.getElementById('panel-' + id).classList.add('active');
@@ -1186,6 +1189,443 @@ function toggleQuiz(gridId, tsId) {
   document.getElementById(gridId).classList.toggle('quiz-mode');
   document.getElementById(tsId).classList.toggle('on');
 }
+
+// ── Felhasználó ──
+var currentUser = localStorage.getItem('dl-user') || null;
+
+function storageKey(sectionId) {
+  return 'dl-' + currentUser + '-' + sectionId;
+}
+
+function showUserPicker(onDone) {
+  var old = document.getElementById('user-overlay');
+  if (old) old.remove();
+  var ov = document.createElement('div');
+  ov.id = 'user-overlay';
+  ov.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:999999;display:flex;align-items:center;justify-content:center;padding:16px;box-sizing:border-box;';
+  var box = document.createElement('div');
+  box.style.cssText = 'background:#fffef9;border-radius:20px;padding:36px 28px;max-width:360px;width:100%;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,0.3);';
+  box.innerHTML = '<div style="font-family:Lora,serif;font-size:1.3rem;font-weight:600;margin-bottom:8px;">🇩🇪 Deutsch Lernen</div><div style="color:#7a6f5e;font-size:0.9rem;margin-bottom:28px;">Ki vagy te?</div>';
+  var btnWrap = document.createElement('div');
+  btnWrap.style.cssText = 'display:flex;gap:14px;justify-content:center;';
+  [['marcell','Marcell','#3a5a8a','#d4e2f4'],['dani','Dani','#4a7c59','#d4eadb']].forEach(function(u){
+    var btn = document.createElement('button');
+    btn.style.cssText = 'padding:16px 32px;border-radius:14px;border:2px solid '+u[2]+';background:'+u[3]+';color:'+u[2]+';font-size:1rem;font-weight:700;cursor:pointer;font-family:Lora,serif;';
+    btn.textContent = '👤 ' + u[1];
+    btn.addEventListener('click', function(){
+      currentUser = u[0];
+      localStorage.setItem('dl-user', currentUser);
+      ov.remove();
+      updateUserBadge();
+      loadAllSections();
+      if (onDone) onDone();
+    });
+    btnWrap.appendChild(btn);
+  });
+  box.appendChild(btnWrap);
+  ov.appendChild(box);
+  document.body.appendChild(ov);
+}
+
+function updateUserBadge() {
+  var old = document.getElementById('user-badge');
+  if (old) old.remove();
+  var names = {marcell:'Marcell', dani:'Dani'};
+  var badge = document.createElement('div');
+  badge.id = 'user-badge';
+  badge.style.cssText = 'display:flex;align-items:center;gap:6px;padding:5px 14px;border-radius:50px;background:#f0ebe0;border:1.5px solid #e0d8c8;font-size:0.82rem;font-weight:600;color:#2a2318;cursor:pointer;user-select:none;';
+  badge.innerHTML = '👤 ' + names[currentUser] + ' <span style="color:#c47c2b;font-size:0.7rem;margin-left:2px;">▼</span>';
+  badge.title = 'Felhasználó váltása';
+  badge.addEventListener('click', function(){
+    localStorage.removeItem('dl-user');
+    currentUser = null;
+    showUserPicker(null);
+  });
+  document.querySelector('.header-inner').appendChild(badge);
+}
+
+// ── Firebase init ──
+var db = null;
+function initFirebase() {
+  try {
+    if (!firebase.apps.length) firebase.initializeApp({
+      apiKey: "AIzaSyCbIlKU-nUIq7z62wYFY8eG6p2hHeYUEDY",
+      authDomain: "nemet-web.firebaseapp.com",
+      projectId: "nemet-web",
+      storageBucket: "nemet-web.firebasestorage.app",
+      messagingSenderId: "452049382230",
+      appId: "1:452049382230:web:0c112b0e4000cc5f5f04f7"
+    });
+    db = firebase.firestore();
+    console.log('Firebase OK');
+  } catch(e) { console.error('Firebase hiba:', e); }
+}
+
+function getCollection() { return 'deutsch-' + currentUser; }
+
+// ── Adatok mentése/betöltése ──
+function saveSection(sectionId, data) {
+  if (!currentUser) return;
+  // localStorage fallback
+  localStorage.setItem(storageKey(sectionId), JSON.stringify(data));
+  // Firebase
+  if (db) {
+    db.collection(getCollection()).doc(sectionId).set(data)
+      .catch(function(e){ console.warn('Firebase mentés hiba:', e); });
+  }
+}
+
+function loadSection(sectionId) {
+  if (!currentUser) return null;
+  var raw = localStorage.getItem(storageKey(sectionId));
+  if (!raw) return null;
+  try { return JSON.parse(raw); } catch(e) { return null; }
+}
+
+function applySection(sectionId, data) {
+  if (!data) return;
+  var deEl = document.getElementById(sectionId + '-de');
+  var huEl = document.getElementById(sectionId + '-hu');
+  if (deEl && data.de) {
+    var sents = deEl.querySelectorAll('.sent');
+    // Update existing sentences
+    data.de.forEach(function(txt, i) {
+      if (sents[i]) {
+        var btn = sents[i].querySelector('button.speak-btn');
+        var num = sents[i].querySelector('.sent-num');
+        sents[i].innerHTML = '';
+        if (num) sents[i].appendChild(num.cloneNode(true));
+        if (btn) { btn.onclick = function(){ speak(txt); }; sents[i].appendChild(btn); }
+        // Handle bold (questions)
+        if (txt.endsWith('?') || data.bold_de && data.bold_de[i]) {
+          var strong = document.createElement('strong');
+          strong.textContent = txt;
+          sents[i].appendChild(strong);
+        } else {
+          sents[i].appendChild(document.createTextNode(txt));
+        }
+      }
+    });
+  }
+  if (huEl && data.hu) {
+    var sents2 = huEl.querySelectorAll('.sent');
+    data.hu.forEach(function(txt, i) {
+      if (sents2[i]) {
+        var num2 = sents2[i].querySelector('.sent-num');
+        sents2[i].innerHTML = '';
+        if (num2) sents2[i].appendChild(num2.cloneNode(true));
+        if (data.bold_hu && data.bold_hu[i]) {
+          var strong2 = document.createElement('strong');
+          strong2.textContent = txt;
+          sents2[i].appendChild(strong2);
+        } else {
+          sents2[i].appendChild(document.createTextNode(txt));
+        }
+      }
+    });
+  }
+}
+
+var ALL_SECTIONS = ['z','f','u','g','sp','gs','land','ta','fz','h2','ha','s3','s4','s5','s6','s8'];
+
+function loadAllSections() {
+  // First apply from localStorage immediately (fast)
+  ALL_SECTIONS.forEach(function(id) {
+    var data = loadSection(id);
+    if (data) applySection(id, data);
+  });
+  // Then sync from Firebase (authoritative)
+  if (!db || !currentUser) return;
+  ALL_SECTIONS.forEach(function(id) {
+    db.collection(getCollection()).doc(id).get().then(function(snap) {
+      if (!snap.exists) return;
+      var data = snap.data();
+      // Sync to localStorage
+      localStorage.setItem(storageKey(id), JSON.stringify(data));
+      applySection(id, data);
+    }).catch(function(e){ console.warn('Firebase betöltés:', id, e); });
+  });
+}
+
+// ── Szerkesztő ──
+function getSectionData(sectionId) {
+  var deEl = document.getElementById(sectionId + '-de');
+  var huEl = document.getElementById(sectionId + '-hu');
+  var de = [], hu = [], bold_de = [], bold_hu = [];
+  if (deEl) {
+    deEl.querySelectorAll('.sent').forEach(function(s) {
+      var c = s.cloneNode(true);
+      c.querySelectorAll('button,.sent-num').forEach(function(n){ n.remove(); });
+      de.push(c.innerText.trim());
+      bold_de.push(!!s.querySelector('strong'));
+    });
+  }
+  if (huEl) {
+    huEl.querySelectorAll('.sent').forEach(function(s) {
+      var c = s.cloneNode(true);
+      c.querySelectorAll('.sent-num').forEach(function(n){ n.remove(); });
+      hu.push(c.innerText.trim());
+      bold_hu.push(!!s.querySelector('strong'));
+    });
+  }
+  return {de:de, hu:hu, bold_de:bold_de, bold_hu:bold_hu};
+}
+
+function openEditor(sectionId, titleText) {
+  var existing = document.getElementById('edit-overlay');
+  if (existing) existing.remove();
+
+  var data = getSectionData(sectionId);
+  var saved = loadSection(sectionId);
+  if (saved) data = saved;
+
+  var ov = document.createElement('div');
+  ov.id = 'edit-overlay';
+  ov.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.65);z-index:999999;overflow-y:auto;padding:20px;box-sizing:border-box;display:flex;justify-content:center;align-items:flex-start;';
+
+  var modal = document.createElement('div');
+  modal.style.cssText = 'background:#fffef9;border-radius:18px;width:100%;max-width:900px;padding:28px;box-shadow:0 8px 40px rgba(0,0,0,0.3);margin:10px 0 40px;box-sizing:border-box;';
+
+  // Header
+  var hdr = document.createElement('div');
+  hdr.style.cssText = 'display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px;';
+  var hdrTitle = document.createElement('div');
+  hdrTitle.style.cssText = 'font-family:Lora,serif;font-size:1.15rem;font-weight:600;';
+  var names = {marcell:'Marcell',dani:'Dani'};
+  hdrTitle.textContent = '✏️ ' + names[currentUser] + ' — ' + titleText;
+  var hdrBtns = document.createElement('div');
+  hdrBtns.style.cssText = 'display:flex;gap:8px;flex-wrap:wrap;';
+
+  var addBtn = document.createElement('button');
+  addBtn.textContent = '＋ Új mondat';
+  addBtn.style.cssText = 'padding:7px 16px;background:#d4e2f4;color:#1a3050;border:none;border-radius:50px;font-weight:600;cursor:pointer;font-size:0.82rem;';
+
+  var saveBtn = document.createElement('button');
+  saveBtn.textContent = '💾 Mentés';
+  saveBtn.style.cssText = 'padding:7px 18px;background:#4a7c59;color:white;border:none;border-radius:50px;font-weight:700;cursor:pointer;font-size:0.88rem;';
+
+  var closeBtn = document.createElement('button');
+  closeBtn.textContent = '✕';
+  closeBtn.style.cssText = 'padding:7px 14px;background:#e0d8c8;color:#2a2318;border:none;border-radius:50px;font-weight:600;cursor:pointer;font-size:0.88rem;';
+  closeBtn.addEventListener('click', function(){ ov.remove(); });
+
+  hdrBtns.appendChild(addBtn);
+  hdrBtns.appendChild(saveBtn);
+  hdrBtns.appendChild(closeBtn);
+  hdr.appendChild(hdrTitle);
+  hdr.appendChild(hdrBtns);
+  modal.appendChild(hdr);
+
+  // Column labels
+  var colLabels = document.createElement('div');
+  colLabels.style.cssText = 'display:grid;grid-template-columns:32px 1fr 1fr 32px;gap:6px;margin-bottom:6px;padding:0 2px;';
+  colLabels.innerHTML = '<div></div><div style="font-size:0.72rem;font-weight:700;color:#3a5a8a;text-transform:uppercase;letter-spacing:.06em;">🇩🇪 Deutsch</div><div style="font-size:0.72rem;font-weight:700;color:#8a3a3a;text-transform:uppercase;letter-spacing:.06em;">🇭🇺 Magyar</div><div></div><div style="grid-column:1/-1;font-size:0.72rem;color:#7a6f5e;margin-bottom:4px;">☰ Fogd meg a sort és húzd a kívánt helyre a sorrend megváltoztatásához</div>';
+  modal.appendChild(colLabels);
+
+  // Rows container
+  var rowsEl = document.createElement('div');
+  rowsEl.id = 'editor-rows';
+  modal.appendChild(rowsEl);
+
+  function makeRow(deVal, huVal, boldDe, boldHu) {
+    var row = document.createElement('div');
+    row.className = 'editor-row';
+    row.draggable = true;
+    row.style.cssText = 'background:#fff;border:1.5px solid #e0d8c8;border-radius:10px;padding:8px 10px;margin-bottom:6px;display:grid;grid-template-columns:22px 1fr 1fr auto;gap:6px;align-items:start;cursor:default;transition:box-shadow .15s;';
+
+    // Drag handle
+    var handle = document.createElement('div');
+    handle.title = 'Húzd át';
+    handle.style.cssText = 'cursor:grab;color:#c0b8a8;font-size:1.1rem;padding-top:6px;user-select:none;text-align:center;';
+    handle.textContent = '⠿';
+    handle.addEventListener('mousedown', function(){ row.style.cursor = 'grabbing'; });
+
+    // DE textarea + B
+    var deWrap = document.createElement('div');
+    deWrap.style.cssText = 'display:flex;flex-direction:column;gap:4px;';
+    var taDe = document.createElement('textarea');
+    taDe.value = deVal || '';
+    taDe.rows = 2;
+    taDe.style.cssText = 'width:100%;font-size:0.85rem;padding:7px 9px;border:1.5px solid #d4e2f4;border-radius:8px;font-family:inherit;resize:vertical;box-sizing:border-box;';
+    var bDe = document.createElement('button');
+    bDe.title = 'Félkövér (kérdés)';
+    bDe.dataset.active = boldDe ? '1' : '0';
+    bDe.style.cssText = 'align-self:flex-start;padding:2px 10px;border-radius:50px;border:1.5px solid #3a5a8a;background:' + (boldDe ? '#3a5a8a' : 'none') + ';color:' + (boldDe ? 'white' : '#3a5a8a') + ';font-size:0.72rem;font-weight:700;cursor:pointer;';
+    bDe.textContent = 'B félkövér';
+    bDe.addEventListener('click', function(){
+      var on = bDe.dataset.active === '1';
+      bDe.dataset.active = on ? '0' : '1';
+      bDe.style.background = on ? 'none' : '#3a5a8a';
+      bDe.style.color = on ? '#3a5a8a' : 'white';
+    });
+    deWrap.appendChild(taDe);
+    deWrap.appendChild(bDe);
+
+    // HU textarea + B
+    var huWrap = document.createElement('div');
+    huWrap.style.cssText = 'display:flex;flex-direction:column;gap:4px;';
+    var taHu = document.createElement('textarea');
+    taHu.value = huVal || '';
+    taHu.rows = 2;
+    taHu.style.cssText = 'width:100%;font-size:0.85rem;padding:7px 9px;border:1.5px solid #f4d4d4;border-radius:8px;font-family:inherit;resize:vertical;box-sizing:border-box;';
+    var bHu = document.createElement('button');
+    bHu.title = 'Félkövér';
+    bHu.dataset.active = boldHu ? '1' : '0';
+    bHu.style.cssText = 'align-self:flex-start;padding:2px 10px;border-radius:50px;border:1.5px solid #8a3a3a;background:' + (boldHu ? '#8a3a3a' : 'none') + ';color:' + (boldHu ? 'white' : '#8a3a3a') + ';font-size:0.72rem;font-weight:700;cursor:pointer;';
+    bHu.textContent = 'B félkövér';
+    bHu.addEventListener('click', function(){
+      var on = bHu.dataset.active === '1';
+      bHu.dataset.active = on ? '0' : '1';
+      bHu.style.background = on ? 'none' : '#8a3a3a';
+      bHu.style.color = on ? '#8a3a3a' : 'white';
+    });
+    huWrap.appendChild(taHu);
+    huWrap.appendChild(bHu);
+
+    // Delete button
+    var delBtn = document.createElement('button');
+    delBtn.textContent = '🗑';
+    delBtn.title = 'Sor törlése';
+    delBtn.style.cssText = 'padding:6px 8px;border-radius:8px;border:none;background:#f4d4d4;color:#8a3a3a;font-size:0.9rem;cursor:pointer;margin-top:2px;';
+    delBtn.addEventListener('click', function(){ row.remove(); });
+
+    row.appendChild(handle);
+    row.appendChild(deWrap);
+    row.appendChild(huWrap);
+    row.appendChild(delBtn);
+
+    // ── Drag & Drop ──
+    row.addEventListener('dragstart', function(e){
+      row.style.opacity = '0.4';
+      row.style.boxShadow = '0 4px 20px rgba(0,0,0,0.18)';
+      e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.setData('text/plain', '');
+      rowsEl._dragging = row;
+    });
+    row.addEventListener('dragend', function(){
+      row.style.opacity = '';
+      row.style.boxShadow = '';
+      rowsEl._dragging = null;
+      rowsEl.querySelectorAll('.editor-row').forEach(function(r){
+        r.style.borderTop = '';
+        r.style.borderBottom = '';
+      });
+    });
+    row.addEventListener('dragover', function(e){
+      e.preventDefault();
+      var dragging = rowsEl._dragging;
+      if (!dragging || dragging === row) return;
+      var rect = row.getBoundingClientRect();
+      var mid = rect.top + rect.height / 2;
+      rowsEl.querySelectorAll('.editor-row').forEach(function(r){
+        r.style.borderTop = '';
+        r.style.borderBottom = '';
+      });
+      if (e.clientY < mid) {
+        row.style.borderTop = '2px solid #c47c2b';
+      } else {
+        row.style.borderBottom = '2px solid #c47c2b';
+      }
+    });
+    row.addEventListener('drop', function(e){
+      e.preventDefault();
+      var dragging = rowsEl._dragging;
+      if (!dragging || dragging === row) return;
+      var rect = row.getBoundingClientRect();
+      var mid = rect.top + rect.height / 2;
+      if (e.clientY < mid) {
+        rowsEl.insertBefore(dragging, row);
+      } else {
+        rowsEl.insertBefore(dragging, row.nextSibling);
+      }
+      rowsEl.querySelectorAll('.editor-row').forEach(function(r){
+        r.style.borderTop = '';
+        r.style.borderBottom = '';
+      });
+    });
+
+    return row;
+  }
+
+  var maxLen = Math.max(data.de.length, data.hu.length);
+  for (var i = 0; i < maxLen; i++) {
+    rowsEl.appendChild(makeRow(data.de[i]||'', data.hu[i]||'', data.bold_de[i]||false, data.bold_hu[i]||false));
+  }
+
+  addBtn.addEventListener('click', function(){
+    rowsEl.appendChild(makeRow('','',false,false));
+  });
+
+  saveBtn.addEventListener('click', function(){
+    var deArr = [], huArr = [], boldDeArr = [], boldHuArr = [];
+    rowsEl.querySelectorAll('.editor-row').forEach(function(row){
+      var tas = row.querySelectorAll('textarea');
+      var bs = row.querySelectorAll('button[data-active]');
+      deArr.push(tas[0].value.trim());
+      huArr.push(tas[1].value.trim());
+      boldDeArr.push(bs[0] && bs[0].dataset.active === '1');
+      boldHuArr.push(bs[1] && bs[1].dataset.active === '1');
+    });
+    saveSection(sectionId, {de:deArr, hu:huArr, bold_de:boldDeArr, bold_hu:boldHuArr});
+    applySection(sectionId, {de:deArr, hu:huArr, bold_de:boldDeArr, bold_hu:boldHuArr});
+    saveBtn.textContent = '✅ Mentve!';
+    saveBtn.style.background = '#3a5a8a';
+    setTimeout(function(){
+      saveBtn.textContent = '💾 Mentés';
+      saveBtn.style.background = '#4a7c59';
+      ov.remove();
+    }, 900);
+  });
+
+  ov.appendChild(modal);
+  ov.addEventListener('click', function(e){ if (e.target === ov) ov.remove(); });
+  document.body.appendChild(ov);
+}
+
+// ── Edit gombok hozzáadása ──
+var EDIT_SECTIONS = [
+  {id:'z', title:'Zukunftspläne'},
+  {id:'f', title:'Mein bester Freund'},
+  {id:'u', title:'Urlaub'},
+  {id:'g', title:'Geld'},
+  {id:'sp', title:'Sport'},
+  {id:'gs', title:'Großstadt'},
+  {id:'land', title:'Auf dem Lande'},
+  {id:'ta', title:'Tagesablauf'},
+  {id:'fz', title:'Freizeit'},
+  {id:'h2', title:'Unser Haus'},
+  {id:'ha', title:'Hausarbeit'}
+];
+
+function addEditButtons() {
+  EDIT_SECTIONS.forEach(function(sec) {
+    var deEl = document.getElementById(sec.id + '-de');
+    if (!deEl) return;
+    var card = deEl.closest('.card');
+    if (!card) return;
+    var ct = card.querySelector('.card-title');
+    if (!ct) return;
+    if (ct.querySelector('.edit-btn')) return;
+    var btn = document.createElement('button');
+    btn.className = 'edit-btn';
+    btn.textContent = '✏️ Szerkesztés';
+    btn.style.cssText = 'padding:5px 12px;border-radius:50px;border:1.5px solid #c47c2b;background:none;color:#c47c2b;font-size:0.78rem;font-weight:600;cursor:pointer;margin-left:6px;';
+    btn.addEventListener('click', function(){ openEditor(sec.id, sec.title); });
+    ct.appendChild(btn);
+  });
+}
+
+// ── Init ──
+window.addEventListener('load', function(){
+  initFirebase();
+  if (currentUser) {
+    updateUserBadge();
+    loadAllSections();
+    addEditButtons();
+  } else {
+    showUserPicker(function(){ addEditButtons(); });
+  }
+});
 </script>
 </body>
 </html>
