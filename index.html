@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Deutsch Lernen 🇩🇪</title>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -667,8 +669,6 @@
 </div><!-- /temakorok -->
 
 </main>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 <script>
 function showMain(id) {
   document.querySelectorAll('.main-panel').forEach(p => p.classList.remove('active'));
@@ -723,12 +723,18 @@ const firebaseConfig = {
   appId: "1:452049382230:web:0c112b0e4000cc5f5f04f7"
 };
 
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+var db = null;
+function initFirebase() {
+  try {
+    if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+    db = firebase.firestore();
+    console.log('Firebase OK');
+  } catch(e) { console.error('Firebase init hiba:', e); }
+}
 
-const USERS = { marcell: 'Marcell', dani: 'Dani' };
-const SECTION_IDS = ['z','f','u','g','h2','ha'];
-let currentUser = localStorage.getItem('deutsch-user') || null;
+var USERS = { marcell: 'Marcell', dani: 'Dani' };
+var SECTION_IDS = ['z','f','u','g','h2','ha'];
+var currentUser = localStorage.getItem('deutsch-user') || null;
 
 function getCollection() {
   return 'deutsch-lernen-' + currentUser;
@@ -817,7 +823,8 @@ async function loadSection(sectionId) {
 
 // ── Szerkesztő modal ──
 function openEditor(sectionId, titleText) {
-  if (!currentUser) return;
+  console.log('openEditor called', sectionId, currentUser);
+  if (!currentUser) { showUserPicker(() => openEditor(sectionId, titleText)); return; }
   const deEl = document.getElementById(sectionId + '-de');
   const huEl = document.getElementById(sectionId + '-hu');
   if (!deEl || !huEl) return;
@@ -891,31 +898,7 @@ function openEditor(sectionId, titleText) {
 }
 
 // ── Edit gombok ──
-function addEditButtons() {
-  const sections = [
-    { id: 'z', title: 'Zukunftspläne' },
-    { id: 'f', title: 'Mein bester Freund' },
-    { id: 'u', title: 'Urlaub' },
-    { id: 'g', title: 'Geld' },
-    { id: 'h2', title: 'Unser Haus' },
-    { id: 'ha', title: 'Hausarbeit' },
-  ];
-  sections.forEach(({ id, title }) => {
-    const deEl = document.getElementById(id + '-de');
-    if (!deEl) return;
-    const card = deEl.closest('.card');
-    if (!card) return;
-    const cardTitle = card.querySelector('.card-title');
-    if (!cardTitle) return;
-    const btn = document.createElement('button');
-    btn.textContent = '✏️ Szerkesztés';
-    btn.style.cssText = 'padding:5px 12px;border-radius:50px;border:1.5px solid #c47c2b;background:none;color:#c47c2b;font-size:0.78rem;font-weight:600;cursor:pointer;';
-    btn.addEventListener('click', () => openEditor(id, title));
-    const readBtn = cardTitle.querySelector('.read-btn');
-    if (readBtn) readBtn.style.marginLeft = '8px';
-    cardTitle.appendChild(btn);
-  });
-}
+function addEditButtons() { /* buttons already in HTML */ }
 
 // ── Expose globals ──
 window.showMain = showMain;
@@ -927,6 +910,7 @@ window.openEditor = openEditor;
 
 // ── Init ──
 window.addEventListener('load', () => {
+  initFirebase();
   addEditButtons();
   if (currentUser) {
     updateUserBadge();
