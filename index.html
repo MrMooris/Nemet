@@ -112,30 +112,7 @@
 </style>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-<script>
-(function(){
-  // Run BEFORE any rendering - set correct nav state instantly
-  var hash = window.location.hash.replace('#','');
-  var mains = ['home','tarsalgasi','szituaciok','temakorok'];
-  var cat = '', subId = '';
-  if (hash) {
-    var parts = hash.split('-');
-    if (parts.length >= 2 && mains.indexOf(parts[0]) !== -1) {
-      cat = parts[0]; subId = parts.slice(1).join('-');
-    } else if (mains.indexOf(hash) !== -1) {
-      cat = hash;
-    }
-  }
-  window._navCat = cat || 'home';
-  window._navSub = subId || '';
-})();
-</script>
-<style>
-  /* Hide all panels by default, JS will show the correct one */
-  .main-panel { display: none !important; }
-  .sub-panel { display: none !important; }
-  .sub-tabs-wrap { display: none !important; }
-</style>
+
 </head>
 <body>
 <header>
@@ -1915,39 +1892,9 @@ function restoreNav() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function(){
-  // Instantly show correct panel before anything else
-  var cat = window._navCat || 'home';
-  var subId = window._navSub || '';
-  var ids = ['home','tarsalgasi','szituaciok','temakorok'];
-
-  document.querySelectorAll('.main-panel').forEach(function(p){ p.classList.remove('active'); });
-  var panel = document.getElementById('panel-' + cat);
-  if (panel) panel.classList.add('active');
-
-  document.querySelectorAll('.main-tab').forEach(function(b,i){
-    b.classList.toggle('active', ids[i] === cat);
-  });
-
-  if (cat !== 'home') {
-    var subWrap = document.getElementById('sub-' + cat);
-    if (subWrap) subWrap.classList.add('active');
-    if (subId) {
-      var subPanel = document.getElementById('sub-' + subId);
-      if (subPanel) subPanel.classList.add('active');
-      if (subWrap) subWrap.querySelectorAll('.sub-tab').forEach(function(b){
-        var oc = b.getAttribute('onclick') || '';
-        b.classList.toggle('active', oc.indexOf("'" + subId + "'") !== -1);
-      });
-    } else {
-      var firstSub = document.querySelector('#panel-' + cat + ' .sub-panel');
-      if (firstSub) firstSub.classList.add('active');
-    }
-  }
-});
-
 window.addEventListener('load', function(){
   initFirebase();
+  restoreNav();
   if (currentUser) {
     updateUserBadge();
     loadAllSections();
